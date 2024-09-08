@@ -19,11 +19,11 @@ public interface IClienteService {
 	
 	public void delete(int id);
 
-	public Factura findFacturaById(int id);
+	public Factura findFacturaById(Long id);
 
 	public Factura saveFactura(Factura factura);
 
-	public void deleteFacturaById(int id);
+	public void deleteFacturaById(Long id);
 
 	public List<String> findAllMunicipios(int id);
 

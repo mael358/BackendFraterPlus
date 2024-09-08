@@ -61,7 +61,7 @@ public class ClienteService implements IClienteService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Factura findFacturaById(int id) {
+	public Factura findFacturaById(Long id) {
 		return facturaDao.findById(id).orElse(null);
 	}
 
@@ -73,14 +73,8 @@ public class ClienteService implements IClienteService {
 
 	@Override
 	@Transactional
-	public void deleteFacturaById(int id) {
+	public void deleteFacturaById(Long id) {
 		facturaDao.deleteById(id);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Producto> findProductoByNombre(String term) {
-		return productoDao.findByNombre(term);
 	}
 
 }

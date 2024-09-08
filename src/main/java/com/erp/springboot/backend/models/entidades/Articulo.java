@@ -11,7 +11,7 @@ public class Articulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Size(max = 255)
     @NotNull
@@ -30,11 +30,11 @@ public class Articulo {
     @Column(name = "valorVenta", nullable = false, precision = 19, scale = 4)
     private BigDecimal valorVenta;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

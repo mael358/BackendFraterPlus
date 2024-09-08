@@ -1,6 +1,6 @@
 package com.erp.springboot.backend.models.entidades;
 
-import com.erp.springboot.backend.controllers.back_end_spring_rest.BackEndSpringRestApplication;
+import com.erp.springboot.backend.BackEndSpringRestApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

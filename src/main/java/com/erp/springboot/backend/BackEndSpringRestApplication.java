@@ -1,4 +1,4 @@
-package com.erp.springboot.backend.controllers.back_end_spring_rest;
+package com.erp.springboot.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
