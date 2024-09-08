@@ -9,22 +9,20 @@ import com.erp.springboot.backend.models.entidades.Factura;
 
 public interface IClienteService {
 	
-	public List<Cliente> findAll();
+	List<Cliente> findAll();
 	
-	public Page<Cliente> findAll(Pageable pageable);
+	Page<Cliente> findAll(Pageable pageable);
 	
-	public Cliente findById(int id);
+	Cliente findById(int id);
 	
-	public Cliente save(Cliente cliente);
+	Cliente save(Cliente cliente);
 	
-	public void delete(int id);
+	void delete(int id);
 
-	public Factura findFacturaById(Long id);
+	Factura findFacturaById(Long id);
 
-	public Factura saveFactura(Factura factura);
+	Factura saveFactura(Factura factura);
 
-	public void deleteFacturaById(Long id);
-
-	public List<String> findAllMunicipios(int id);
+	void deleteFacturaById(Long id);
 
 }

@@ -53,12 +53,6 @@ public class ClienteService implements IClienteService {
 		clienteDao.deleteById(id);
 	}
 
-
-	@Override
-	public List<String> findAllMunicipios(int id) {
-		return clienteDao.findAllMunicipios(id);
-	}
-
 	@Override
 	@Transactional(readOnly = true)
 	public Factura findFacturaById(Long id) {
