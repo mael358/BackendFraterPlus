@@ -1,0 +1,100 @@
+package com.erp.springboot.backend.models.entidades;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Usuario {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @Size(max = 150)
+    @NotNull
+    @Column(name = "nombre", nullable = false, length = 150)
+    private String nombre;
+
+    @Size(max = 100)
+    @NotNull
+    @Column(name = "username", nullable = false, length = 100)
+    private String username;
+
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @NotNull
+    @Column(name = "enabled", nullable = false)
+    private Boolean enabled = false;
+
+    @Size(max = 150)
+    @NotNull
+    @Column(name = "apellido", nullable = false, length = 150)
+    private String apellido;
+
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+}
