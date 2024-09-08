@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface IProductoDao extends CrudRepository<Articulo, Long> {
+public interface IArticuloDao extends CrudRepository<Articulo, Long> {
 
     @Query("select p from Articulo p where p.nombre like %?1%")
     public List<Articulo> findByNombre(String term);

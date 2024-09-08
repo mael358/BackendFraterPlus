@@ -13,12 +13,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/articulos")
-public class ProductController {
+public class ArticuloController {
 
     private final ArticuloService productService;
 
     @Autowired
-    public ProductController(ArticuloService productService) {
+    public ArticuloController(ArticuloService productService) {
         this.productService = productService;
     }
 

@@ -22,12 +22,12 @@ public class UsuarioController {
         this.userService = userService;
     }
 
-    @GetMapping("/listar")
+    @GetMapping()
     public ResponseEntity<List<Usuario>> list(){
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/listar/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Usuario> get(@PathVariable Long id){
         Optional<Usuario> optionalUser =  userService.findById(id);
         return optionalUser.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
