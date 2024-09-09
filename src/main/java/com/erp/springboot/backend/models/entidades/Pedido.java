@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
+@Table(name = "pedido")
 public class Pedido {
     @Id
     @Column(name = "id", nullable = false)
@@ -24,6 +25,16 @@ public class Pedido {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "Estadoid", nullable = false)
     private Estado estadoid;
+
+    public Pedido() {
+    }
+
+    public Pedido(Integer id, Instant fechaCreacion, Cliente clienteid, Estado estadoid) {
+        this.id = id;
+        this.fechaCreacion = fechaCreacion;
+        this.clienteid = clienteid;
+        this.estadoid = estadoid;
+    }
 
     public Integer getId() {
         return id;

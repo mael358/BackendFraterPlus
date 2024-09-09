@@ -3,11 +3,13 @@ package com.erp.springboot.backend.models.entidades;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.Instant;
 
 @Entity
+@Table(name = "cliente")
 public class Cliente {
     @Id
     @Column(name = "id", nullable = false)
@@ -40,6 +42,20 @@ public class Cliente {
     @Size(max = 40)
     @Column(name = "DPI", length = 40)
     private String dpi;
+
+    public Cliente() {
+    }
+
+    public Cliente(Integer id, String nombres, String apellidos, Instant fechaNacimiento, Integer edad, String direccion, String nit, String dpi) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.fechaNacimiento = fechaNacimiento;
+        this.edad = edad;
+        this.direccion = direccion;
+        this.nit = nit;
+        this.dpi = dpi;
+    }
 
     public Integer getId() {
         return id;
