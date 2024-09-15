@@ -3,6 +3,8 @@ package com.erp.springboot.backend.services;
 import com.erp.springboot.backend.models.entidades.Usuario;
 import com.erp.springboot.backend.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +24,8 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Usuario> findAll() {
-        return (List) userRepository.findAll();
+    public Page<Usuario> findAll(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 
     @Override
@@ -42,5 +44,10 @@ public class UserServiceImpl implements IUserService {
     @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Usuario> findByEnabledTrue() {
+        return userRepository.findByEnabledTrue();
     }
 }

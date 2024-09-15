@@ -1,6 +1,8 @@
 package com.erp.springboot.backend.models.entidades;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -15,16 +17,19 @@ public class Usuario {
     @Size(max = 150)
     @NotNull
     @Column(name = "nombre", nullable = false, length = 150)
+    @NotBlank
     private String nombre;
 
     @Size(max = 100)
     @NotNull
     @Column(name = "username", nullable = false, length = 100)
+    @NotBlank
     private String username;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "password", nullable = false)
+    @NotBlank
     private String password;
 
     @NotNull
@@ -34,11 +39,14 @@ public class Usuario {
     @Size(max = 150)
     @NotNull
     @Column(name = "apellido", nullable = false, length = 150)
+    @NotBlank
     private String apellido;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "email", nullable = false)
+    @NotBlank
+    @Email
     private String email;
 
     public Long getId() {
