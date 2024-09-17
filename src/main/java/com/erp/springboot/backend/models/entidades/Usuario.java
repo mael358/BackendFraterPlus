@@ -1,10 +1,13 @@
 package com.erp.springboot.backend.models.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -48,6 +51,15 @@ public class Usuario {
     @NotBlank
     @Email
     private String email;
+
+    @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler" }, allowSetters = true)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "usuario_rol",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "rol_id"),
+            uniqueConstraints = {
+            @UniqueConstraint(columnNames = { "usuario_id", "rol_id" }) })
+    private List<Rol> roles;
 
     public Long getId() {
         return id;
@@ -105,4 +117,11 @@ public class Usuario {
         this.email = email;
     }
 
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
 }

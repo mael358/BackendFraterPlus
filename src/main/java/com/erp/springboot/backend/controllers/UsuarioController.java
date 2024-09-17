@@ -2,7 +2,7 @@ package com.erp.springboot.backend.controllers;
 
 
 import com.erp.springboot.backend.models.entidades.Usuario;
-import com.erp.springboot.backend.services.IUserService;
+import com.erp.springboot.backend.services.Usuarios.IUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

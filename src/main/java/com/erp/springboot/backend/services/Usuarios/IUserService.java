@@ -1,4 +1,4 @@
-package com.erp.springboot.backend.services;
+package com.erp.springboot.backend.services.Usuarios;
 
 
 import com.erp.springboot.backend.models.entidades.Usuario;
