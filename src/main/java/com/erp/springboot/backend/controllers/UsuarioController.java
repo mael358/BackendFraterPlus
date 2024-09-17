@@ -1,6 +1,7 @@
 package com.erp.springboot.backend.controllers;
 
 
+import com.erp.springboot.backend.models.dtos.Usuarios.UsuarioRequest;
 import com.erp.springboot.backend.models.entidades.Usuario;
 import com.erp.springboot.backend.services.Usuarios.IUserService;
 import jakarta.validation.Valid;
@@ -56,21 +57,14 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody @Valid Usuario user, BindingResult result, @PathVariable Long id){
+    public ResponseEntity<?> update(@RequestBody @Valid UsuarioRequest user, BindingResult result, @PathVariable Long id){
         // Validar errores
         ResponseEntity<?> errors = getErrors(result);
         if (errors != null) return errors;
 
-        user.setId(id);
-        Optional<Usuario> optionalUser = userService.findById(id);
-        if(optionalUser.isPresent()){
-            Usuario userToUpdate = optionalUser.get();
-            userToUpdate.setNombre(user.getNombre());
-            userToUpdate.setApellido(user.getApellido());
-            userToUpdate.setEmail(user.getEmail());
-            userToUpdate.setPassword(user.getPassword());
-            userToUpdate.setUsername(user.getUsername());
-            return ResponseEntity.ok(userService.save(userToUpdate));
+        Optional<Usuario> optionalUser = userService.update(user, id);
+        if (optionalUser.isPresent()){
+            return ResponseEntity.ok(optionalUser.orElseThrow());
         }
         return ResponseEntity.notFound().build();
     }

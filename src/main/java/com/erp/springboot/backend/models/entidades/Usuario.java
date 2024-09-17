@@ -1,6 +1,8 @@
 package com.erp.springboot.backend.models.entidades;
 
+import com.erp.springboot.backend.models.dtos.Usuarios.IUsuarioRequest;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +12,7 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-public class Usuario {
+public class Usuario implements IUsuarioRequest {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -51,6 +53,10 @@ public class Usuario {
     @NotBlank
     @Email
     private String email;
+
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private boolean admin;
 
     @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler" }, allowSetters = true)
     @ManyToMany(fetch = FetchType.LAZY)
@@ -123,5 +129,13 @@ public class Usuario {
 
     public void setRoles(List<Rol> roles) {
         this.roles = roles;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }
