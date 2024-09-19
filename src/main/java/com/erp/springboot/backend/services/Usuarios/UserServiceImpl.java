@@ -82,11 +82,11 @@ public class UserServiceImpl implements IUserService {
 
     private List<Rol> getRoles(IUsuarioRequest user) {
         List<Rol> Rols = new ArrayList<>();
-        Optional<Rol> optionalRolUser = roleRepository.findByName("Rol_USER");
+        Optional<Rol> optionalRolUser = roleRepository.findByNombre("Rol_USER");
         optionalRolUser.ifPresent(Rols::add);
 
         if (user.isAdmin()) {
-            Optional<Rol> optionalRolAdmin = roleRepository.findByName("Rol_ADMIN");
+            Optional<Rol> optionalRolAdmin = roleRepository.findByNombre("Rol_ADMIN");
             optionalRolAdmin.ifPresent(Rols::add);
         }
         return Rols;
