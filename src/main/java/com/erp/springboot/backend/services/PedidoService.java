@@ -80,7 +80,7 @@ public class PedidoService implements IPedidoService {
         // Crear el pedido sin guardarlo aún
         Pedido pedido = new Pedido(
                 _pend,
-                clienteDao.findById(_pend.getCliente()).get(),
+                clienteDao.findById((long)_pend.getCliente()).get(),
                 estadoDao.findById(_pend.getEstado()).get()
         );
 
@@ -118,7 +118,7 @@ public class PedidoService implements IPedidoService {
                 .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
 
         // Actualizar las propiedades del pedido con los nuevos datos
-        pedidoExistente.setClienteid(clienteDao.findById(_pedido.getCliente()).get());
+        pedidoExistente.setClienteid(clienteDao.findById((long)_pedido.getCliente()).get());
         pedidoExistente.setEstadoid(estadoDao.findById(_pedido.getEstado()).get());
 
         // Buscar los detalles actuales del pedido
