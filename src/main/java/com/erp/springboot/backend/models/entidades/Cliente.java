@@ -13,7 +13,7 @@ import java.time.Instant;
 public class Cliente {
     @Id
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Size(max = 150)
     @NotNull
@@ -46,7 +46,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nombres, String apellidos, Instant fechaNacimiento, Integer edad, String direccion, String nit, String dpi) {
+    public Cliente(Long id, String nombres, String apellidos, Instant fechaNacimiento, Integer edad, String direccion, String nit, String dpi) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -57,11 +57,11 @@ public class Cliente {
         this.dpi = dpi;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

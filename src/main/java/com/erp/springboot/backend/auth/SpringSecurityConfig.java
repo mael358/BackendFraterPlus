@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,16 +43,30 @@ public class SpringSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         return http.authorizeHttpRequests(authz -> authz
+                        // Rutas de Usuarios
                         .requestMatchers(HttpMethod.GET, "/usuarios", "/usuarios/page/{page}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/usuarios/{id}").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/usuarios").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/usuarios/{id}").hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/usuarios/{id}").hasRole("ADMIN")
+                        // Rutas de Articulos
+                        .requestMatchers(HttpMethod.GET, "/articulos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/articulos/{id}").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/articulos/filtrar-articulo/{term}").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/articulos").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/articulos/{id}").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/articulos/{id}").hasRole("ADMIN")
+                        // Rutas de Clientes
+                        .requestMatchers(HttpMethod.GET, "/api/clientes/", "/api/clientes/page/{page}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/clientes/{id}").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/clientes/").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/clientes/{id}").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/clientes/{id}").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .cors(cors -> cors.configurationSource(configurationSource()))
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtValidationFilter(authenticationManager()))
-                .csrf(config -> config.disable())
+                .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }

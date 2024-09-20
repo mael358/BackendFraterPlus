@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface IArticuloDao extends CrudRepository<Articulo, Long> {
 
-    @Query("select p from Articulo p where p.nombre like %?1%")
-    public List<Articulo> findByNombre(String term);
+    @Query("select p from Articulo p where lower(p.nombre) like lower(concat('%', ?1, '%')) or lower(p.descripcion) like lower(concat('%', ?1, '%'))")
+    List<Articulo> findByNombreOrDescripcionContainingIgnoreCase(String term);
 
-    public List<Articulo> findByNombreContainingIgnoreCase(String term);
+    List<Articulo> findByNombreContainingIgnoreCase(String term);
 
-    public List<Articulo> findByNombreStartingWithIgnoreCase(String term);
+    List<Articulo> findByNombreStartingWithIgnoreCase(String term);
 }

@@ -1,6 +1,7 @@
 package com.erp.springboot.backend.controllers;
 
 
+import com.erp.springboot.backend.models.dao.IArticuloDao;
 import com.erp.springboot.backend.models.entidades.Articulo;
 import com.erp.springboot.backend.services.ArticuloService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,12 @@ public class ArticuloController {
 
     private final ArticuloService productService;
 
+    private final IArticuloDao articuloDao;
+
     @Autowired
-    public ArticuloController(ArticuloService productService) {
+    public ArticuloController(ArticuloService productService, IArticuloDao articuloDao) {
         this.productService = productService;
+        this.articuloDao = articuloDao;
     }
 
     @GetMapping()
@@ -60,5 +64,10 @@ public class ArticuloController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/filtrar-articulo/{term}")
+    public List<Articulo> filtrarProductos(@PathVariable String term){
+        return articuloDao.findByNombreOrDescripcionContainingIgnoreCase(term);
     }
 }

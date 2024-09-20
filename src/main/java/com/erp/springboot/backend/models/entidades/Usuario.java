@@ -62,10 +62,10 @@ public class Usuario implements IUsuarioRequest {
     @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler" }, allowSetters = true)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_rol",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "rol_id"),
+            joinColumns = @JoinColumn(name = "Usuarioid"),
+            inverseJoinColumns = @JoinColumn(name = "Rolid"),
             uniqueConstraints = {
-            @UniqueConstraint(columnNames = { "usuario_id", "rol_id" }) })
+            @UniqueConstraint(columnNames = { "id", "id" }) })
     private List<Rol> roles;
 
     public Long getId() {
