@@ -3,10 +3,12 @@ package com.erp.springboot.backend.models.entidades;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "rol")
 public class Rol {
     @Id
     @Column(name = "id", nullable = false)

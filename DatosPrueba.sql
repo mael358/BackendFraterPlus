@@ -95,15 +95,35 @@ INSERT INTO pedido_detalle (linea, cantidad, Articuloid, Pedidoid) VALUES
 
 -- Datos de prueba para la tabla Usuario
 INSERT INTO usuario (nombre, username, password, enabled, apellido, email) VALUES
-('Juan', 'jmartinez', 'hashedpassword1', 1, 'Martínez', 'juan.martinez@example.com'), -- Usuario activo
-('María', 'mlopez', 'hashedpassword2', 1, 'López', 'maria.lopez@example.com'),       -- Usuario activo
-('Carlos', 'cperez', 'hashedpassword3', 0, 'Pérez', 'carlos.perez@example.com'),     -- Usuario inactivo
-('Ana', 'agonzalez', 'hashedpassword4', 1, 'González', 'ana.gonzalez@example.com'),  -- Usuario activo
-('Luis', 'lrodriguez', 'hashedpassword5', 1, 'Rodríguez', 'luis.rodriguez@example.com'); -- Usuario activo
+('Juan', 'mvelasquez', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Martínez', 'juan.martinez@example.com'), -- Usuario activo
+('María', 'mlopez', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'López', 'maria.lopez@example.com'),       -- Usuario activo
+('Carlos', 'cperez', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 0, 'Pérez', 'carlos.perez@example.com'),     -- Usuario inactivo
+('Ana', 'agonzalez', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'González', 'ana.gonzalez@example.com'),  -- Usuario activo
+('Luis', 'lrodriguez', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Rodríguez', 'luis.rodriguez@example.com'), -- Usuario activo
+('David', 'david123', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Sánchez', 'david.sanchez@example.com'),
+('Sofia', 'sofia234', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Ramírez', 'sofia.ramirez@example.com'),
+('Daniel', 'daniel345', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Castillo', 'daniel.castillo@example.com'),
+('Laura', 'laura456', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Ortega', 'laura.ortega@example.com'),
+('Andrés', 'andres567', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Morales', 'andres.morales@example.com'),
+('Cristina', 'cristina678', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Cruz', 'cristina.cruz@example.com'),
+('Jorge', 'jorge789', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Mendoza', 'jorge.mendoza@example.com'),
+('Paula', 'paula890', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Navarro', 'paula.navarro@example.com'),
+('Luis', 'luis901', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Herrera', 'luis.herrera@example.com'),
+('Natalia', 'natalia012', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Díaz', 'natalia.diaz@example.com'),
+('Pedro', 'pedro111', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Guzmán', 'pedro.guzman@example.com'),
+('Isabel', 'isabel222', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'López', 'isabel.lopez@example.com'),
+('Esteban', 'esteban333', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Salazar', 'esteban.salazar@example.com'),
+('Julia', 'julia444', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Martínez', 'julia.martinez@example.com'),
+('Miguel', 'miguel555', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Fernández', 'miguel.fernandez@example.com'),
+('Carolina', 'carolina666', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Torres', 'carolina.torres@example.com'),
+('Pablo', 'pablo777', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Soto', 'pablo.soto@example.com'),
+('Raquel', 'raquel888', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Aguilar', 'raquel.aguilar@example.com'),
+('Tomás', 'tomas999', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Velasco', 'tomas.velasco@example.com'),
+('Elena', 'elena000', '$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS', 1, 'Blanco', 'elena.blanco@example.com');
 
 -- Datos de prueba para la tabla Rol
 INSERT INTO rol (nombre, descripcion) VALUES
-('Administrador', 'Tiene acceso completo a todas las funcionalidades del sistema'),
+('ROLE_ADMIN', 'Tiene acceso completo a todas las funcionalidades del sistema'),
 ('Vendedor', 'Acceso a la gestión de ventas y pedidos'),
 ('Almacén', 'Acceso a la gestión de inventarios y lotes'),
 ('Soporte', 'Acceso a la atención al cliente y resolución de problemas'),

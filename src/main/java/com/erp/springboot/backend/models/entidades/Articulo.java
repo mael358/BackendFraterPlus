@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "articulo")
 public class Articulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

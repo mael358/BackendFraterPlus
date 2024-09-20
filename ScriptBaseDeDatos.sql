@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS FraterPlus;
+
+CREATE DATABASE FraterPlus;
+
 USE FraterPlus;
 
 -- Tabla de proveedor
