@@ -4,10 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "pedido_detalle")
 public class PedidoDetalle {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @NotNull
     @Column(name = "linea", nullable = false)
@@ -19,19 +21,29 @@ public class PedidoDetalle {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Articuloid", nullable = false)
+    @JoinColumn(name = "articulo_id", nullable = false)
     private Articulo articuloid;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Pedidoid", nullable = false)
+    @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedidoid;
 
-    public Integer getId() {
+    public PedidoDetalle( Integer linea, Integer cantidad, Articulo articuloid, Pedido pedidoid) {
+        this.linea = linea;
+        this.cantidad = cantidad;
+        this.articuloid = articuloid;
+        this.pedidoid = pedidoid;
+    }
+
+    public PedidoDetalle() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

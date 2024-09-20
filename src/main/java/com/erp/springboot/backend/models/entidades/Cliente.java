@@ -25,7 +25,7 @@ public class Cliente {
     @Column(name = "apellidos", nullable = false, length = 150)
     private String apellidos;
 
-    @Column(name = "fechaNacimiento")
+    @Column(name = "fecha_nacimiento")
     private Instant fechaNacimiento;
 
     @Column(name = "edad")

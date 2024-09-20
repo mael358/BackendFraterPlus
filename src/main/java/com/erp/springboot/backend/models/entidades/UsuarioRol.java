@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "usuario_rol")
 public class UsuarioRol {
     @Id
     @Column(name = "id", nullable = false)
@@ -11,12 +12,12 @@ public class UsuarioRol {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Usuarioid", nullable = false)
+    @JoinColumn(name = "usuario_rol", nullable = false)
     private Usuario usuarioid;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Rolid", nullable = false)
+    @JoinColumn(name = "rol_id", nullable = false)
     private Rol rolid;
 
     public Integer getId() {

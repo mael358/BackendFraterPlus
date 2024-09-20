@@ -1,19 +1,17 @@
 package com.erp.springboot.backend.controllers;
-
-import com.erp.springboot.backend.models.dtos.PedidoDto;
+import com.erp.springboot.backend.models.dtos.Pedidos.PedidoCreateDto;
+import com.erp.springboot.backend.models.dtos.Pedidos.PedidoDto;
 import com.erp.springboot.backend.models.entidades.Pedido;
-import com.erp.springboot.backend.models.entidades.Usuario;
 import com.erp.springboot.backend.services.interfaces.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/pedidos")
 public class PedidoController {
 
     private final IPedidoService pedidoService;
@@ -35,16 +33,16 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoDto> CrearPedido(@RequestBody Pedido pedido){
+    public ResponseEntity<PedidoDto> CrearPedido(@RequestBody PedidoCreateDto pedido){
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.save(pedido));
     }
 
-    @PutMapping
-    public ResponseEntity<PedidoDto> ActualizarPedido(@RequestBody Pedido pedido){
-        Optional<PedidoDto> pedidoOptional = Optional.ofNullable(pedidoService.findById(pedido.getId()));
+    @PutMapping("/{id}")
+    public ResponseEntity<PedidoDto> ActualizarPedido(@PathVariable int id, @RequestBody PedidoCreateDto pedido){
+        Optional<PedidoDto> pedidoOptional = Optional.ofNullable(pedidoService.findById(id));
         if(pedidoOptional.isPresent()){
             pedidoService.save(pedido);
-            return ResponseEntity.status(HttpStatus.OK).body(new PedidoDto(pedido));
+            return ResponseEntity.status(HttpStatus.OK).body(pedidoOptional.get());
         }
         return ResponseEntity.notFound().build();
     }

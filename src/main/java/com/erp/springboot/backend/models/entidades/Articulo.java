@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "articulo")
 public class Articulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +24,11 @@ public class Articulo {
     private String descripcion;
 
     @NotNull
-    @Column(name = "valorCosto", nullable = false, precision = 19, scale = 4)
+    @Column(name = "valor_costo", nullable = false, precision = 19, scale = 4)
     private BigDecimal valorCosto;
 
     @NotNull
-    @Column(name = "valorVenta", nullable = false, precision = 19, scale = 4)
+    @Column(name = "valor_venta", nullable = false, precision = 19, scale = 4)
     private BigDecimal valorVenta;
 
     public Long getId() {

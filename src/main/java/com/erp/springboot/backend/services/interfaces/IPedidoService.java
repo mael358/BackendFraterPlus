@@ -1,6 +1,7 @@
 package com.erp.springboot.backend.services.interfaces;
 
-import com.erp.springboot.backend.models.dtos.PedidoDto;
+import com.erp.springboot.backend.models.dtos.Pedidos.PedidoCreateDto;
+import com.erp.springboot.backend.models.dtos.Pedidos.PedidoDto;
 import com.erp.springboot.backend.models.entidades.Pedido;
 import org.springframework.data.domain.Pageable;
 
@@ -14,7 +15,9 @@ public interface IPedidoService {
 
     PedidoDto findById(int id);
 
-    PedidoDto save(Pedido pedido);
+    PedidoDto save(PedidoCreateDto _pedido);
+
+    PedidoDto updatePedido(PedidoCreateDto _pedido, int id);
 
     void delete(int id);
 

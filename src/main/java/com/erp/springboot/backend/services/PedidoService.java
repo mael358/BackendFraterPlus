@@ -1,8 +1,10 @@
 package com.erp.springboot.backend.services;
 
-import com.erp.springboot.backend.models.dao.IPedidoDao;
-import com.erp.springboot.backend.models.dtos.PedidoDto;
+import com.erp.springboot.backend.models.dao.*;
+import com.erp.springboot.backend.models.dtos.Pedidos.PedidoCreateDto;
+import com.erp.springboot.backend.models.dtos.Pedidos.PedidoDto;
 import com.erp.springboot.backend.models.entidades.Pedido;
+import com.erp.springboot.backend.models.entidades.PedidoDetalle;
 import com.erp.springboot.backend.services.interfaces.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -11,12 +13,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class PedidoService implements IPedidoService {
 
     @Autowired
     private IPedidoDao pedidoDao;
+
+    @Autowired
+    private IClienteDao clienteDao;
+
+    @Autowired
+    private IEstadoDao estadoDao;
+
+    @Autowired
+    private IArticuloDao articuloDao;
+
+    @Autowired
+    private IDetallePedidoDao detallePedidoDao;
 
     /**
      * @return devuelve todos los registros de pedido
@@ -26,7 +43,7 @@ public class PedidoService implements IPedidoService {
     public List<PedidoDto> findAll() {
         List<PedidoDto> pedidoDtos = new ArrayList<>();
         for (Pedido pedido : pedidoDao.findAll()) {
-            pedidoDtos.add(new PedidoDto(pedido));
+            pedidoDtos.add(new PedidoDto(pedido,pedidoDao.detallesPedido(pedido.getId())));
         }
         return pedidoDtos;
     }
@@ -39,7 +56,7 @@ public class PedidoService implements IPedidoService {
     public List<PedidoDto> findAll(Pageable pageable) {
         List<PedidoDto> pedidoDtos = new ArrayList<>();
         for (Pedido pedido : pedidoDao.findAll()) {
-            pedidoDtos.add(new PedidoDto(pedido));
+            pedidoDtos.add(new PedidoDto(pedido,pedidoDao.detallesPedido(pedido.getId())));
         }
         return pedidoDtos;
     }
@@ -49,14 +66,110 @@ public class PedidoService implements IPedidoService {
      * @return
      */
     @Override
-    public PedidoDto findById(int id) {return new PedidoDto(pedidoDao.findById(id).get() );}
+    public PedidoDto findById(int id){
+        return new PedidoDto(pedidoDao.findById(id).get(),pedidoDao.detallesPedido(id) );
+    }
 
     /**
-     * @param pedido
+     * @param _pend
      * @return
      */
     @Override
-    public PedidoDto save(Pedido pedido) { return new PedidoDto(pedidoDao.save(pedido)) ; }
+    @Transactional
+    public PedidoDto save(PedidoCreateDto _pend) {
+        // Crear el pedido sin guardarlo aún
+        Pedido pedido = new Pedido(
+                _pend,
+                clienteDao.findById(_pend.getCliente()).get(),
+                estadoDao.findById(_pend.getEstado()).get()
+        );
+
+        int linea = 1;
+
+        // Crear y asociar los detalles con el pedido
+        for (var detalle : _pend.getDetalles()) {
+            PedidoDetalle nuevoDetalle = new PedidoDetalle(
+                    linea, // Número de línea
+                    detalle.getCantidad(),
+                    articuloDao.findById(detalle.getArticulo()).get(),
+                    pedido  // Asociar el pedido (no guardado aún)
+            );
+            pedido.getDetalles().add(nuevoDetalle); // Añadir el detalle al pedido
+            linea++;
+        }
+
+        // Guardar el pedido junto con los detalles
+        Pedido pedidoGuardado = pedidoDao.save(pedido);
+
+        // Retornar el Pedido con los detalles guardados
+        return new PedidoDto(pedidoGuardado, pedidoGuardado.getDetalles());
+    }
+
+
+    /**
+     * @param _pedido
+     * @param pedidoId
+     * @return
+     */
+    @Override
+    public PedidoDto updatePedido(PedidoCreateDto _pedido,int pedidoId ) {
+        // Buscar el pedido existente
+        Pedido pedidoExistente = pedidoDao.findById(pedidoId)
+                .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+
+        // Actualizar las propiedades del pedido con los nuevos datos
+        pedidoExistente.setClienteid(clienteDao.findById(_pedido.getCliente()).get());
+        pedidoExistente.setEstadoid(estadoDao.findById(_pedido.getEstado()).get());
+
+        // Buscar los detalles actuales del pedido
+        List<PedidoDetalle> detallesExistentes = pedidoDao.detallesPedido(pedidoExistente.getId());
+
+        // Mapear los detalles existentes por número de línea para compararlos
+        Map<Integer, PedidoDetalle> detalleMap = detallesExistentes.stream()
+                .collect(Collectors.toMap(PedidoDetalle::getLinea, Function.identity()));
+
+        List<PedidoDetalle> detallesActualizados = new ArrayList<>();
+        List<PedidoDetalle> detallesNuevos = new ArrayList<>();
+        List<PedidoDetalle> detallesParaEliminar = new ArrayList<>(detallesExistentes);
+
+        // Recorrer los nuevos detalles recibidos
+        for (var detalleDto : _pedido.getDetalles()) {
+            if (detalleMap.containsKey(detalleDto.getLinea())) {
+                // Si el detalle ya existe, actualizarlo
+                PedidoDetalle detalleExistente = detalleMap.get(detalleDto.getLinea());
+                detalleExistente.setCantidad(detalleDto.getCantidad());
+                detalleExistente.setArticuloid(articuloDao.findById(detalleDto.getArticulo()).get());
+                detallesActualizados.add(detalleExistente);
+                detallesParaEliminar.remove(detalleExistente); // No eliminar este detalle, porque aún existe
+            } else {
+                // Si es un nuevo detalle, agregarlo
+                PedidoDetalle nuevoDetalle = new PedidoDetalle(
+                        detalleDto.getLinea(),
+                        detalleDto.getCantidad(),
+                        articuloDao.findById(detalleDto.getArticulo()).get(),
+                        pedidoExistente
+                );
+                detallesNuevos.add(nuevoDetalle);
+            }
+        }
+
+        // Eliminar los detalles que ya no están en el nuevo pedido
+        detallePedidoDao.deleteAll(detallesParaEliminar);
+
+        // Guardar los nuevos y actualizados detalles
+        detallePedidoDao.saveAll(detallesNuevos);
+        detallePedidoDao.saveAll(detallesActualizados);
+
+        // Guardar el pedido actualizado
+        Pedido pedidoActualizado = pedidoDao.save(pedidoExistente);
+
+        // Retornar el DTO con el pedido y los detalles actualizados
+        List<PedidoDetalle> todosLosDetalles = new ArrayList<>(detallesActualizados);
+        todosLosDetalles.addAll(detallesNuevos);
+
+        return new PedidoDto(pedidoActualizado, todosLosDetalles);
+    }
+
 
     /**
      * @param id
