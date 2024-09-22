@@ -19,6 +19,10 @@ public interface IPedidoService {
 
     PedidoDto updatePedido(PedidoCreateDto _pedido, int id);
 
+    List<PedidoDto> findAllByNombre(String nombres);
+
+    List<PedidoDto> findAllByEstado(Integer estadoid);
+
     void delete(int id);
 
 }

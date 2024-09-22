@@ -12,4 +12,10 @@ public interface IPedidoDao extends CrudRepository<Pedido, Integer> {
     // Obetener Detalles de los pedidos
     @Query("select dp from PedidoDetalle dp where dp.pedidoid.id = :_idPedido")
     public List<PedidoDetalle> detallesPedido(@Param("_idPedido")int _idPedido);
+
+    @Query("select dp from Pedido dp where dp.clienteid.nombres like %:nombres%")
+    List<Pedido> findByClienteNombresContainingIgnoreCase(String nombres);
+
+    List<Pedido> findByEstadoid_Id(int _idEstado);
+
 }

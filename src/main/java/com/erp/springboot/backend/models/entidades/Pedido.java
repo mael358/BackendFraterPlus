@@ -20,6 +20,10 @@ public class Pedido {
     private Instant fechaCreacion;
 
     @NotNull
+    @Column(name = "observaciones", nullable = false)
+    private String observaciones;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente clienteid;
@@ -36,6 +40,7 @@ public class Pedido {
     }
 
     public Pedido(PedidoCreateDto pedidoCreateDto, Cliente clienteid, Estado estadoid) {
+        this.observaciones = pedidoCreateDto.getObservaciones();
         this.fechaCreacion = Instant.now();
         this.clienteid = clienteid;
         this.estadoid = estadoid;
@@ -53,6 +58,14 @@ public class Pedido {
 
     public void setDetalles(List<PedidoDetalle> detalles) {
         this.detalles = detalles;
+    }
+
+    public  String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones( String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public Integer getId() {

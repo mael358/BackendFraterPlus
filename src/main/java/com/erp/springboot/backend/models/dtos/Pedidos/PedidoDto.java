@@ -13,17 +13,28 @@ public class PedidoDto {
     private Instant fecha;
     private String cliente;
     private String estado;
+    private String observaciones;
     private List<PedidoDetalleDto> detalles;
 
     public PedidoDto(Pedido _pedido, List<PedidoDetalle> _pendDetailers) {
         this.id = _pedido.getId();
-        this.cliente = _pedido.getClienteid().getNombres().concat(" ").concat(_pedido.getClienteid().getApellidos());
+        this.cliente = _pedido.getClienteid().getNombres().concat(" ");
         this.estado = _pedido.getEstadoid().getDescripcion();
         this.fecha = _pedido.getFechaCreacion();
+        this.observaciones=_pedido.getObservaciones();
         this.detalles = new ArrayList<>();
         for (PedidoDetalle _pedidoDetalle : _pendDetailers) {
             this.detalles.add(new PedidoDetalleDto(_pedidoDetalle));
         }
+
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     public List<PedidoDetalleDto> getDetalles() {

@@ -25,11 +25,11 @@ public class Articulo {
 
     @NotNull
     @Column(name = "valor_costo", nullable = false, precision = 19, scale = 4)
-    private BigDecimal valorCosto;
+    private BigDecimal valor_costo;
 
     @NotNull
     @Column(name = "valor_venta", nullable = false, precision = 19, scale = 4)
-    private BigDecimal valorVenta;
+    private BigDecimal valor_venta;
 
     public Long getId() {
         return id;
@@ -55,20 +55,20 @@ public class Articulo {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getValorCosto() {
-        return valorCosto;
+    public BigDecimal getValor_costo() {
+        return valor_costo;
     }
 
-    public void setValorCosto(BigDecimal valorCosto) {
-        this.valorCosto = valorCosto;
+    public void setValor_costo(BigDecimal valorCosto) {
+        this.valor_costo = valorCosto;
     }
 
-    public BigDecimal getValorVenta() {
-        return valorVenta;
+    public BigDecimal getValor_venta() {
+        return valor_venta;
     }
 
-    public void setValorVenta(BigDecimal valorVenta) {
-        this.valorVenta = valorVenta;
+    public void setValor_venta(BigDecimal valorVenta) {
+        this.valor_venta = valorVenta;
     }
 
 }

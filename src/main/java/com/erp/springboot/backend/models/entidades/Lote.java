@@ -12,26 +12,26 @@ public class Lote {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "fechaVencimiento")
-    private Instant fechaVencimiento;
+    @Column(name = "fecha_vencimiento")
+    private Instant fecha_vencimiento;
 
     @NotNull
-    @Column(name = "cantidadInicial", nullable = false)
-    private Integer cantidadInicial;
+    @Column(name = "cantidad_inicial", nullable = false)
+    private Integer cantidad_inicial;
 
     @NotNull
-    @Column(name = "cantidadDisponible", nullable = false)
-    private Integer cantidadDisponible;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Articuloid", nullable = false)
-    private Articulo articuloid;
+    @Column(name = "cantidad_disponible", nullable = false)
+    private Integer cantidad_disponible;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "compraId", nullable = false)
-    private Compra compra;
+    @JoinColumn(name = "articulo_id", nullable = false)
+    private Articulo articulo_id;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "compra_id", nullable = false)
+    private Compra compra_id;
 
     public Integer getId() {
         return id;
@@ -41,44 +41,44 @@ public class Lote {
         this.id = id;
     }
 
-    public Instant getFechaVencimiento() {
-        return fechaVencimiento;
+    public Instant getFecha_vencimiento() {
+        return fecha_vencimiento;
     }
 
-    public void setFechaVencimiento(Instant fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
+    public void setFecha_vencimiento(Instant fechaVencimiento) {
+        this.fecha_vencimiento = fechaVencimiento;
     }
 
-    public Integer getCantidadInicial() {
-        return cantidadInicial;
+    public Integer getCantidad_inicial() {
+        return cantidad_inicial;
     }
 
-    public void setCantidadInicial(Integer cantidadInicial) {
-        this.cantidadInicial = cantidadInicial;
+    public void setCantidad_inicial(Integer cantidadInicial) {
+        this.cantidad_inicial = cantidadInicial;
     }
 
-    public Integer getCantidadDisponible() {
-        return cantidadDisponible;
+    public Integer getCantidad_disponible() {
+        return cantidad_disponible;
     }
 
-    public void setCantidadDisponible(Integer cantidadDisponible) {
-        this.cantidadDisponible = cantidadDisponible;
+    public void setCantidad_disponible(Integer cantidadDisponible) {
+        this.cantidad_disponible = cantidadDisponible;
     }
 
-    public Articulo getArticuloid() {
-        return articuloid;
+    public Articulo getArticulo_id() {
+        return articulo_id;
     }
 
-    public void setArticuloid(Articulo articuloid) {
-        this.articuloid = articuloid;
+    public void setArticulo_id(Articulo articuloid) {
+        this.articulo_id = articuloid;
     }
 
-    public Compra getCompra() {
-        return compra;
+    public Compra getCompra_id() {
+        return compra_id;
     }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
+    public void setCompra_id(Compra compra) {
+        this.compra_id = compra;
     }
 
 }

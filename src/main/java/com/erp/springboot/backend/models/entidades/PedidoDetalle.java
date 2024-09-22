@@ -3,6 +3,8 @@ package com.erp.springboot.backend.models.entidades;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "pedido_detalle")
 public class PedidoDetalle {
@@ -20,6 +22,10 @@ public class PedidoDetalle {
     private Integer cantidad;
 
     @NotNull
+    @Column(name = "precio_ofertado", nullable = false)
+    private BigDecimal precio_ofertado;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "articulo_id", nullable = false)
     private Articulo articuloid;
@@ -29,7 +35,8 @@ public class PedidoDetalle {
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedidoid;
 
-    public PedidoDetalle( Integer linea, Integer cantidad, Articulo articuloid, Pedido pedidoid) {
+    public PedidoDetalle( Integer linea, Integer cantidad, Articulo articuloid, Pedido pedidoid, BigDecimal precioOferta) {
+        this.precio_ofertado = precioOferta;
         this.linea = linea;
         this.cantidad = cantidad;
         this.articuloid = articuloid;
@@ -37,6 +44,14 @@ public class PedidoDetalle {
     }
 
     public PedidoDetalle() {
+    }
+
+    public BigDecimal getPrecio_ofertado() {
+        return precio_ofertado;
+    }
+
+    public void setPrecio_ofertado(BigDecimal precio_ofertado) {
+        this.precio_ofertado = precio_ofertado;
     }
 
     public Long getId() {

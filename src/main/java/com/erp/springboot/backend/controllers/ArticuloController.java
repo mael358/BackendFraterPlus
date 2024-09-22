@@ -49,7 +49,7 @@ public class ArticuloController {
         if(optionalProduct.isPresent()){
             Articulo productToUpdate = optionalProduct.get();
             productToUpdate.setNombre(product.getNombre());
-            productToUpdate.setValorCosto(product.getValorCosto());
+            productToUpdate.setValor_costo(product.getValor_costo());
             return ResponseEntity.ok(productService.save(productToUpdate));
         }
         return ResponseEntity.notFound().build();

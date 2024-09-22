@@ -18,7 +18,7 @@ public class Compra {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "proveedorId", nullable = false)
+    @JoinColumn(name = "proveedor_id", nullable = false)
     private Proveedor proveedor;
 
     public Integer getId() {

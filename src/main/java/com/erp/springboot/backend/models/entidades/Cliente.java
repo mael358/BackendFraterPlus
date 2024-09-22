@@ -1,9 +1,6 @@
 package com.erp.springboot.backend.models.entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.Instant;
@@ -12,6 +9,7 @@ import java.time.Instant;
 @Table(name = "cliente")
 public class Cliente {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -20,10 +18,6 @@ public class Cliente {
     @Column(name = "nombres", nullable = false, length = 150)
     private String nombres;
 
-    @Size(max = 150)
-    @NotNull
-    @Column(name = "apellidos", nullable = false, length = 150)
-    private String apellidos;
 
     @Column(name = "fecha_nacimiento")
     private Instant fechaNacimiento;
@@ -46,10 +40,9 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Long id, String nombres, String apellidos, Instant fechaNacimiento, Integer edad, String direccion, String nit, String dpi) {
+    public Cliente(Long id, String nombres, Instant fechaNacimiento, Integer edad, String direccion, String nit, String dpi) {
         this.id = id;
         this.nombres = nombres;
-        this.apellidos = apellidos;
         this.fechaNacimiento = fechaNacimiento;
         this.edad = edad;
         this.direccion = direccion;
@@ -71,14 +64,6 @@ public class Cliente {
 
     public void setNombres(String nombres) {
         this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public Instant getFechaNacimiento() {

@@ -18,12 +18,12 @@ public class DetalleFactura {
     private Integer cantidad;
 
     @NotNull
-    @Column(name = "precioUnitario", nullable = false, precision = 19, scale = 4)
-    private BigDecimal precioUnitario;
+    @Column(name = "precio_unitario", nullable = false, precision = 19, scale = 4)
+    private BigDecimal precio_unitario;
 
     @NotNull
-    @Column(name = "noLinea", nullable = false)
-    private Integer noLinea;
+    @Column(name = "no_linea", nullable = false)
+    private Integer no_linea;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -47,19 +47,19 @@ public class DetalleFactura {
     }
 
     public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
+        return precio_unitario;
     }
 
     public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
+        this.precio_unitario = precioUnitario;
     }
 
     public Integer getNoLinea() {
-        return noLinea;
+        return no_linea;
     }
 
     public void setNoLinea(Integer noLinea) {
-        this.noLinea = noLinea;
+        this.no_linea = noLinea;
     }
 
     public Articulo getArticuloid() {

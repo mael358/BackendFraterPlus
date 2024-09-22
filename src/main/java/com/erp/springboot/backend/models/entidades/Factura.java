@@ -1,12 +1,12 @@
 package com.erp.springboot.backend.models.entidades;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "factura")
 public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,40 +15,54 @@ public class Factura {
 
     @Size(max = 40)
     @NotNull
-    @Column(name = "nitEmisor", nullable = false, length = 40)
-    private String nitEmisor;
+    @Column(name = "nit_emisor", nullable = false, length = 40)
+    private String nit_emisor;
 
     @Size(max = 150)
     @NotNull
-    @Column(name = "nombreEmisor", nullable = false, length = 150)
-    private String nombreEmisor;
+    @Column(name = "nombre_emisor", nullable = false, length = 150)
+    private String nombre_emisor;
 
     @NotNull
-    @Column(name = "montoTotal", nullable = false, precision = 19, scale = 4)
-    private BigDecimal montoTotal;
+    @Column(name = "monto_total", nullable = false, precision = 19, scale = 4)
+    private BigDecimal monto_total;
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "direccionEmisor", nullable = false)
-    private String direccionEmisor;
+    @Column(name = "direccion_emisor", nullable = false)
+    private String direccion_emisor;
 
     @NotNull
-    @Column(name = "tipoFactura", nullable = false)
-    private Boolean tipoFactura = false;
+    @Column(name = "tipo_factura", nullable = false)
+    private Boolean tipo_factura = false;
 
     @Size(max = 100)
-    @Column(name = "departamentoReceptor", length = 100)
-    private String departamentoReceptor;
+    @Column(name = "departamento_receptor", length = 100)
+    private String departamento_receptor;
+
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "observaciones",nullable = false)
+    private String observaciones;
 
     @NotNull
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Clienteid", nullable = false)
-    private Cliente clienteid;
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente_id;
 
-    @NotNull
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Pedidoid", nullable = false)
-    private Pedido pedidoid;
+    @JoinColumn(name = "pedido_id", nullable = false)
+    private Pedido pedido_id;
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
 
     public Integer getId() {
         return id;
@@ -59,67 +73,67 @@ public class Factura {
     }
 
     public String getNitEmisor() {
-        return nitEmisor;
+        return nit_emisor;
     }
 
     public void setNitEmisor(String nitEmisor) {
-        this.nitEmisor = nitEmisor;
+        this.nit_emisor = nitEmisor;
     }
 
-    public String getNombreEmisor() {
-        return nombreEmisor;
+    public String getNombre_emisor() {
+        return nombre_emisor;
     }
 
-    public void setNombreEmisor(String nombreEmisor) {
-        this.nombreEmisor = nombreEmisor;
+    public void setNombre_emisor(String nombreEmisor) {
+        this.nombre_emisor = nombreEmisor;
     }
 
-    public BigDecimal getMontoTotal() {
-        return montoTotal;
+    public BigDecimal getMonto_total() {
+        return monto_total;
     }
 
-    public void setMontoTotal(BigDecimal montoTotal) {
-        this.montoTotal = montoTotal;
+    public void setMonto_total(BigDecimal montoTotal) {
+        this.monto_total = montoTotal;
     }
 
     public String getDireccionEmisor() {
-        return direccionEmisor;
+        return direccion_emisor;
     }
 
     public void setDireccionEmisor(String direccionEmisor) {
-        this.direccionEmisor = direccionEmisor;
+        this.direccion_emisor = direccionEmisor;
     }
 
     public Boolean getTipoFactura() {
-        return tipoFactura;
+        return tipo_factura;
     }
 
     public void setTipoFactura(Boolean tipoFactura) {
-        this.tipoFactura = tipoFactura;
+        this.tipo_factura = tipoFactura;
     }
 
-    public String getDepartamentoReceptor() {
-        return departamentoReceptor;
+    public String getDepartamento_receptor() {
+        return departamento_receptor;
     }
 
-    public void setDepartamentoReceptor(String departamentoReceptor) {
-        this.departamentoReceptor = departamentoReceptor;
+    public void setDepartamento_receptor(String departamentoReceptor) {
+        this.departamento_receptor = departamentoReceptor;
     }
 
-    public Cliente getClienteid() {
-        return clienteid;
+    public Cliente getCliente_id() {
+        return cliente_id;
     }
 
-    public void setClienteid(Cliente clienteid) {
-        this.clienteid = clienteid;
+    public void setCliente_id(Cliente clienteid) {
+        this.cliente_id = clienteid;
     }
 
-    public Pedido getPedidoid() {
-        return pedidoid;
+    public Pedido getPedido_id() {
+        return pedido_id;
     }
 
-    public void setPedidoid(Pedido pedidoid) {
-        this.pedidoid = pedidoid;
+    public void setPedido_id(Pedido pedidoid) {
+        this.pedido_id = pedidoid;
     }
 
 }

@@ -62,6 +62,32 @@ public class PedidoService implements IPedidoService {
     }
 
     /**
+     * @param nombres string a buscar dentro de los clientes de los pedidos
+     * @return Lista de pedidos filtrada por nombres
+     */
+    @Override
+    public List<PedidoDto> findAllByNombre(String nombres) {
+        List<PedidoDto> pedidoDtos = new ArrayList<>();
+        for (Pedido pedido : pedidoDao.findByClienteNombresContainingIgnoreCase(nombres)) {
+            pedidoDtos.add(new PedidoDto(pedido,pedidoDao.detallesPedido(pedido.getId())));
+        }
+        return pedidoDtos;
+    }
+
+    /**
+     * @param estadoid
+     * @return
+     */
+    @Override
+    public List<PedidoDto> findAllByEstado(Integer estadoid) {
+        List<PedidoDto> pedidoDtos = new ArrayList<>();
+        for (Pedido pedido : pedidoDao.findByEstadoid_Id(estadoid)) {
+            pedidoDtos.add(new PedidoDto(pedido,pedidoDao.detallesPedido(pedido.getId())));
+        }
+        return pedidoDtos;
+    }
+
+    /**
      * @param id
      * @return
      */
@@ -92,7 +118,8 @@ public class PedidoService implements IPedidoService {
                     linea, // Número de línea
                     detalle.getCantidad(),
                     articuloDao.findById(detalle.getArticulo()).get(),
-                    pedido  // Asociar el pedido (no guardado aún)
+                    pedido,
+                    detalle.getPrecio()
             );
             pedido.getDetalles().add(nuevoDetalle); // Añadir el detalle al pedido
             linea++;
@@ -147,7 +174,8 @@ public class PedidoService implements IPedidoService {
                         detalleDto.getLinea(),
                         detalleDto.getCantidad(),
                         articuloDao.findById(detalleDto.getArticulo()).get(),
-                        pedidoExistente
+                        pedidoExistente,
+                        detalleDto.getPrecio()
                 );
                 detallesNuevos.add(nuevoDetalle);
             }

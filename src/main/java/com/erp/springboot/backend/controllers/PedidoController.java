@@ -27,6 +27,18 @@ public class PedidoController {
         return pedidoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/busqueda/nombres/{nombres}")
+    public ResponseEntity<List<PedidoDto>> ObtenerPedidosPorNombre(@PathVariable String nombres){
+        Optional<List<PedidoDto>> pedidoDtoOptional = Optional.ofNullable(pedidoService.findAllByNombre(nombres));
+        return pedidoDtoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/busqueda/estado/{id}")
+    public ResponseEntity<List<PedidoDto>> ObtenerPedidosPorEstado(@PathVariable int id){
+        Optional<List<PedidoDto>> pedidoDtoOptional = Optional.ofNullable(pedidoService.findAllByEstado(id));
+        return pedidoDtoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @GetMapping
     public ResponseEntity<List<PedidoDto>> ObtenerPedidos(){
         return  ResponseEntity.status(HttpStatus.OK).body(pedidoService.findAll());

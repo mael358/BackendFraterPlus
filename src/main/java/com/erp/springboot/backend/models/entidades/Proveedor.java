@@ -17,9 +17,6 @@ public class Proveedor {
     @Column(name = "nombres", nullable = false, length = 150)
     private String nombres;
 
-    @Size(max = 150)
-    @Column(name = "apellidos", length = 150)
-    private String apellidos;
 
     @Size(max = 255)
     @Column(name = "direccion")
@@ -50,13 +47,7 @@ public class Proveedor {
         this.nombres = nombres;
     }
 
-    public String getApellidos() {
-        return apellidos;
-    }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
 
     public String getDireccion() {
         return direccion;

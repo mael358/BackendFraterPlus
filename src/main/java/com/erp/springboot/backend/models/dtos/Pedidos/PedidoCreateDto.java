@@ -6,17 +6,26 @@ import java.util.List;
 public class PedidoCreateDto {
     private int cliente;
     private int estado;
+    private String observaciones;
     private List<PedidoDetalleCreateDto> detalles;
 
     public PedidoCreateDto() {
     }
 
-    public PedidoCreateDto(Instant fechaCreacion, int cliente, int estado, List<PedidoDetalleCreateDto> detalles) {
+    public PedidoCreateDto(Instant fechaCreacion, int cliente, int estado,String observaciones, List<PedidoDetalleCreateDto> detalles) {
+        this.observaciones = observaciones;
         this.cliente = cliente;
         this.estado = estado;
         this.detalles = detalles;
     }
 
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
 
     public int getCliente() {
         return cliente;

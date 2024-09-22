@@ -13,24 +13,24 @@ public class MovimientoLote {
     private Integer id;
 
     @NotNull
-    @Column(name = "tipoMovimiento", nullable = false)
-    private Boolean tipoMovimiento = false;
+    @Column(name = "tipo_movimiento", nullable = false)
+    private Boolean tipo_movimiento = false;
 
     @NotNull
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
     @NotNull
-    @Column(name = "fechaMovimiento", nullable = false)
-    private Instant fechaMovimiento;
+    @Column(name = "fecha_movimiento", nullable = false)
+    private Instant fecha_movimiento;
 
-    @Column(name = "referenciaDetalleFactura")
-    private Integer referenciaDetalleFactura;
+    @Column(name = "referencia_detalle_factura")
+    private Integer referencia_detalle_factura;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "loteid", nullable = false)
-    private Lote loteid;
+    @JoinColumn(name = "lote_id", nullable = false)
+    private Lote lote_id;
 
     public Integer getId() {
         return id;
@@ -40,12 +40,12 @@ public class MovimientoLote {
         this.id = id;
     }
 
-    public Boolean getTipoMovimiento() {
-        return tipoMovimiento;
+    public Boolean getTipo_movimiento() {
+        return tipo_movimiento;
     }
 
-    public void setTipoMovimiento(Boolean tipoMovimiento) {
-        this.tipoMovimiento = tipoMovimiento;
+    public void setTipo_movimiento(Boolean tipoMovimiento) {
+        this.tipo_movimiento = tipoMovimiento;
     }
 
     public Integer getCantidad() {
@@ -56,28 +56,28 @@ public class MovimientoLote {
         this.cantidad = cantidad;
     }
 
-    public Instant getFechaMovimiento() {
-        return fechaMovimiento;
+    public Instant getFecha_movimiento() {
+        return fecha_movimiento;
     }
 
-    public void setFechaMovimiento(Instant fechaMovimiento) {
-        this.fechaMovimiento = fechaMovimiento;
+    public void setFecha_movimiento(Instant fechaMovimiento) {
+        this.fecha_movimiento = fechaMovimiento;
     }
 
-    public Integer getReferenciaDetalleFactura() {
-        return referenciaDetalleFactura;
+    public Integer getReferencia_detalle_factura() {
+        return referencia_detalle_factura;
     }
 
-    public void setReferenciaDetalleFactura(Integer referenciaDetalleFactura) {
-        this.referenciaDetalleFactura = referenciaDetalleFactura;
+    public void setReferencia_detalle_factura(Integer referenciaDetalleFactura) {
+        this.referencia_detalle_factura = referenciaDetalleFactura;
     }
 
-    public Lote getLoteid() {
-        return loteid;
+    public Lote getLote_id() {
+        return lote_id;
     }
 
-    public void setLoteid(Lote loteid) {
-        this.loteid = loteid;
+    public void setLote_id(Lote loteid) {
+        this.lote_id = loteid;
     }
 
 }

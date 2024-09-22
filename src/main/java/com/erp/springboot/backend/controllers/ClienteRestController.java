@@ -121,7 +121,6 @@ public class ClienteRestController {
 
         Cliente clienteUpdated = null;
         try {
-            clienteActual.setApellidos(cliente.getApellidos());
             clienteActual.setNombres(cliente.getNombres());
             // TODO: Agregar correo
             clienteActual.setFechaNacimiento(cliente.getFechaNacimiento());
