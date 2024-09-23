@@ -6,25 +6,32 @@ CREATE DATABASE FraterPlus;
 USE FraterPlus;
 
 -- Tabla de proveedor
-CREATE TABLE proveedor (
-id INT AUTO_INCREMENT PRIMARY KEY,
-nombres VARCHAR(150) NOT NULL COMMENT 'Nombres del proveedor',
-apellidos VARCHAR(150) COMMENT 'Apellidos del proveedor',
-direccion VARCHAR(255) NULL COMMENT 'Dirección del proveedor',
-nit VARCHAR(40) NOT NULL COMMENT 'Número de Identificación Tributaria del proveedor',
-DPI VARCHAR(40) NULL COMMENT 'Documento Personal de Identificación del proveedor'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabla que almacena la información de los proveedor';
+CREATE TABLE `proveedor` (
+`id` int NOT NULL AUTO_INCREMENT,
+`nombres` varchar(150) NOT NULL COMMENT 'Nombres del proveedor',
+`direccion` varchar(255) DEFAULT NULL COMMENT 'Dirección del proveedor',
+`nit` varchar(40) NOT NULL COMMENT 'Número de Identificación Tributaria del proveedor',
+`DPI` varchar(40) DEFAULT NULL COMMENT 'Documento Personal de Identificación del proveedor',
+`telefono` varchar(30) DEFAULT NULL,
+`extension` varchar(10) DEFAULT NULL,
+`correo` varchar(150) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabla que almacena la información de los proveedor';
 
 -- Tabla de cliente
-CREATE TABLE cliente (
-id INT AUTO_INCREMENT PRIMARY KEY,
-nombres VARCHAR(150) NOT NULL COMMENT 'Nombres del cliente',
-fecha_nacimiento TIMESTAMP NULL COMMENT 'Fecha de nacimiento del cliente',
-edad INT NULL COMMENT 'Edad del cliente calculada a partir de la fecha de nacimiento',
-direccion VARCHAR(255) NULL COMMENT 'Dirección del cliente',
-nit VARCHAR(40) NULL COMMENT 'Número de Identificación Tributaria del cliente',
-DPI VARCHAR(40) NULL COMMENT 'Documento Personal de Identificación del cliente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabla que almacena la información de los clientes';
+CREATE TABLE `cliente` (
+`id` int NOT NULL AUTO_INCREMENT,
+`nombres` varchar(150) NOT NULL COMMENT 'Nombres del cliente',
+`fecha_nacimiento` timestamp NULL DEFAULT NULL COMMENT 'Fecha de nacimiento del cliente',
+`edad` int DEFAULT NULL COMMENT 'Edad del cliente calculada a partir de la fecha de nacimiento',
+`direccion` varchar(255) DEFAULT NULL COMMENT 'Dirección del cliente',
+`nit` varchar(40) DEFAULT NULL COMMENT 'Número de Identificación Tributaria del cliente',
+`DPI` varchar(40) DEFAULT NULL COMMENT 'Documento Personal de Identificación del cliente',
+`correo` varchar(150) DEFAULT NULL,
+`telefono` varchar(30) DEFAULT NULL,
+`extension` varchar(10) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Tabla que almacena la información de los clientes';
 
 -- Tabla articulo
 CREATE TABLE articulo (
