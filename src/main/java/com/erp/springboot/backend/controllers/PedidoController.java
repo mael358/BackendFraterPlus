@@ -7,13 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.erp.springboot.backend.tool.utils;
 
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
 
+    private utils Utils = new utils();
     private final IPedidoService pedidoService;
 
     @Autowired
@@ -27,16 +35,16 @@ public class PedidoController {
         return pedidoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/busqueda/nombres/{nombres}")
-    public ResponseEntity<List<PedidoDto>> ObtenerPedidosPorNombre(@PathVariable String nombres){
+    @GetMapping("/busqueda/{nombres}/{id}")
+    public ResponseEntity<Page<PedidoDto>> ObtenerPedidosPorNombre(@PathVariable String nombres,@PathVariable Integer id, Pageable pageable){
         Optional<List<PedidoDto>> pedidoDtoOptional = Optional.ofNullable(pedidoService.findAllByNombre(nombres));
-        return pedidoDtoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/busqueda/estado/{id}")
-    public ResponseEntity<List<PedidoDto>> ObtenerPedidosPorEstado(@PathVariable int id){
-        Optional<List<PedidoDto>> pedidoDtoOptional = Optional.ofNullable(pedidoService.findAllByEstado(id));
-        return pedidoDtoOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        Optional<List<PedidoDto>> pedidoDtoOptionalEstado = Optional.ofNullable(pedidoService.findAllByEstado(id));
+        List<PedidoDto> pedidoDtos = pedidoDtoOptional.orElse(new ArrayList<>());
+        pedidoDtos.addAll(pedidoDtoOptionalEstado.orElse(new ArrayList<>()));
+        if ( (nombres==null||nombres=="") && id == null ){
+            pedidoDtos.addAll(pedidoService.findAll());
+        }
+        return ResponseEntity.ok( Utils.convertirListaAPagina(pedidoDtoOptional.get(), pageable));
     }
 
     @GetMapping

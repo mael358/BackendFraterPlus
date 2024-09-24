@@ -2,9 +2,11 @@ package com.erp.springboot.backend.services;
 
 import com.erp.springboot.backend.models.dao.*;
 import com.erp.springboot.backend.models.dtos.Pedidos.PedidoCreateDto;
+import com.erp.springboot.backend.models.dtos.Pedidos.PedidoDetalleDto;
 import com.erp.springboot.backend.models.dtos.Pedidos.PedidoDto;
 import com.erp.springboot.backend.models.entidades.Pedido;
 import com.erp.springboot.backend.models.entidades.PedidoDetalle;
+import com.erp.springboot.backend.models.entidades.vistas.VwArticulosInventario;
 import com.erp.springboot.backend.services.interfaces.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -34,6 +37,9 @@ public class PedidoService implements IPedidoService {
 
     @Autowired
     private IDetallePedidoDao detallePedidoDao;
+
+    @Autowired
+    private IVwArticulosInventarioDao vwArticulosInventarioDao;
 
     /**
      * @return devuelve todos los registros de pedido
@@ -93,7 +99,11 @@ public class PedidoService implements IPedidoService {
      */
     @Override
     public PedidoDto findById(int id){
-        return new PedidoDto(pedidoDao.findById(id).get(),pedidoDao.detallesPedido(id) );
+        PedidoDto pedido = new PedidoDto(pedidoDao.findById(id).get(),pedidoDao.detallesPedido(id) );
+        for (PedidoDetalleDto detalleDto : pedido.getDetalles()) {
+            detalleDto.setCantidadDisponible(obtenerExistencia(((int)detalleDto.getArticuloId())));
+        }
+        return pedido;
     }
 
     /**
@@ -204,4 +214,17 @@ public class PedidoService implements IPedidoService {
      */
     @Override
     public void delete(int id) { pedidoDao.deleteById(id) ;}
+
+    /**
+     * Obtiene la existencia actual de un articulo
+     * @param codigoArticulo
+     * @return obtiene la cantidad actual de articulos disponibles en el inventario
+     */
+    public int obtenerExistencia(Integer codigoArticulo){
+        VwArticulosInventario optionalVista = vwArticulosInventarioDao.findById(codigoArticulo)
+                .orElseThrow(() -> new RuntimeException("Articulo no existente para buscar existencia"));
+        return optionalVista.getCantidadEnExistenciaActual().intValue();
+    }
+
+
 }

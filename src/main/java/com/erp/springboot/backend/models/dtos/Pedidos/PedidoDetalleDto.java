@@ -9,12 +9,23 @@ public class PedidoDetalleDto {
     private int cantidad;
     private BigDecimal precio;
     private String articulo;
+    private Integer cantidadDisponible;
+    private long articuloId;
 
     public PedidoDetalleDto(PedidoDetalle _detalle) {
         this.linea = _detalle.getLinea();
         this.precio = _detalle.getPrecio_ofertado();
         this.cantidad = _detalle.getCantidad();
         this.articulo = _detalle.getArticuloid().getDescripcion();
+        this.articuloId = _detalle.getArticuloid().getId();
+    }
+
+    public long getArticuloId() {
+        return articuloId;
+    }
+
+    public void setArticuloId(long articuloId) {
+        this.articuloId = articuloId;
     }
 
     public BigDecimal getPrecio() {
@@ -23,6 +34,14 @@ public class PedidoDetalleDto {
 
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
+    }
+
+    public Integer getCantidadDisponible() {
+        return cantidadDisponible;
+    }
+
+    public void setCantidadDisponible(Integer cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
     }
 
     public int getLinea() {
