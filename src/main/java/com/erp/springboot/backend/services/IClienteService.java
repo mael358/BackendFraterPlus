@@ -27,4 +27,6 @@ public interface IClienteService {
 
 	void deleteFacturaById(Long id);
 
+	List<Cliente> findByIdOrNombresOrDpiOrNitContainingIgnoreCase(String term);
+
 }

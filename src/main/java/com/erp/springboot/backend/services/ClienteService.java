@@ -71,4 +71,9 @@ public class ClienteService implements IClienteService {
 		facturaDao.deleteById(id);
 	}
 
+	@Override
+	public List<Cliente> findByIdOrNombresOrDpiOrNitContainingIgnoreCase(String term) {
+		return clienteDao.findByIdOrNombresOrDpiOrNitContainingIgnoreCase(term);
+	}
+
 }
