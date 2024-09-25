@@ -1,5 +1,6 @@
 package com.erp.springboot.backend.controllers;
 
+import com.erp.springboot.backend.models.entidades.Articulo;
 import com.erp.springboot.backend.models.entidades.Cliente;
 import com.erp.springboot.backend.services.IClienteService;
 import jakarta.validation.Valid;
@@ -153,6 +154,11 @@ public class ClienteRestController {
 
         response.put("mensaje", "El cliente ha sido eliminado con éxito");
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/clientes/filtrar-clientes/{term}")
+    public List<Cliente> filtrarProductos(@PathVariable String term){
+        return clienteService.findByIdOrNombresOrDpiOrNitContainingIgnoreCase(term);
     }
 
 }
