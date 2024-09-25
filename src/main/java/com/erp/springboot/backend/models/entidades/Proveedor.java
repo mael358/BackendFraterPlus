@@ -1,14 +1,14 @@
 package com.erp.springboot.backend.models.entidades;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@Table(name = "proveedor")
 public class Proveedor {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -31,6 +31,42 @@ public class Proveedor {
     @Column(name = "DPI", length = 40)
     private String dpi;
 
+    @Size(max = 30)
+    @Column(name = "telefono", length = 30)
+    private String telefono;
+
+    @Size(max = 10)
+    @Column(name = "extension", length = 10)
+    private String extension;
+
+    @Size(max = 150)
+    @Column(name = "correo", length = 150)
+    private String correo;
+
+    public @Size(max = 30) String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(@Size(max = 30) String telefono) {
+        this.telefono = telefono;
+    }
+
+    public @Size(max = 10) String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(@Size(max = 10) String extension) {
+        this.extension = extension;
+    }
+
+    public @Size(max = 150) String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(@Size(max = 150) String correo) {
+        this.correo = correo;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -46,8 +82,6 @@ public class Proveedor {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-
-
 
     public String getDireccion() {
         return direccion;

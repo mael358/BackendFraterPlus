@@ -1,8 +1,7 @@
 package com.erp.springboot.backend.controllers;
 
-import com.erp.springboot.backend.models.entidades.Articulo;
 import com.erp.springboot.backend.models.entidades.Cliente;
-import com.erp.springboot.backend.services.IClienteService;
+import com.erp.springboot.backend.services.interfaces.IClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;

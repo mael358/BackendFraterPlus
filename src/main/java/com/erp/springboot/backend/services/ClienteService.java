@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.erp.springboot.backend.models.dao.IFacturaDao;
 import com.erp.springboot.backend.models.entidades.Factura;
+import com.erp.springboot.backend.services.interfaces.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

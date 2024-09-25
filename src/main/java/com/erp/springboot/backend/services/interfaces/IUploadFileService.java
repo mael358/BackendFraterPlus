@@ -1,4 +1,4 @@
-package com.erp.springboot.backend.services;
+package com.erp.springboot.backend.services.interfaces;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

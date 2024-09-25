@@ -3,7 +3,7 @@ package com.erp.springboot.backend.controllers;
 
 import com.erp.springboot.backend.models.dao.IArticuloDao;
 import com.erp.springboot.backend.models.entidades.Articulo;
-import com.erp.springboot.backend.services.ArticuloService;
+import com.erp.springboot.backend.services.interfaces.ArticuloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

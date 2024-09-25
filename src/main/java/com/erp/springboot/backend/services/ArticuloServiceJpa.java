@@ -3,6 +3,7 @@ package com.erp.springboot.backend.services;
 
 import com.erp.springboot.backend.models.entidades.Articulo;
 import com.erp.springboot.backend.repositories.ArticuloRepository;
+import com.erp.springboot.backend.services.interfaces.ArticuloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
