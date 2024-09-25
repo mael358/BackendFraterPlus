@@ -15,4 +15,6 @@ public interface IUserRepository extends CrudRepository<Usuario, Long> {
     Page<Usuario> findAll(Pageable pageable);
 
     Optional<Usuario> findByUsername(String name);
+
+    List<Usuario> findByNombreContainsIgnoreCase(String nombre);
 }

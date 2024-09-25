@@ -22,4 +22,8 @@ public interface IUserService {
     void delete(Long id);
 
     List<Usuario> findByEnabledTrue();
+
+    List<Usuario> findAll();
+
+    List<Usuario> findByNombre(String nombre);
 }

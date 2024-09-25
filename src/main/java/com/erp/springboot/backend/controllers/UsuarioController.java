@@ -13,11 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import com.erp.springboot.backend.tool.utils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -26,20 +24,25 @@ public class UsuarioController {
 
     private final IUserService userService;
 
+    private utils Utils = new utils();
+
     @Autowired
     public UsuarioController(IUserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Usuario>> list(){
-        return new ResponseEntity<>(userService.findByEnabledTrue(), HttpStatus.OK);
-    }
+    @GetMapping
+    public ResponseEntity<Page<Usuario>> listPageable(
+            @RequestParam(required = false) String nombre,
+            Pageable pageable){
+        List<Usuario> usuarios = new ArrayList<>();
+        if (nombre != null) {
+            usuarios.addAll(userService.findByNombre(nombre));
+        }else{
+            usuarios.addAll(userService.findAll());
+        }
 
-    @GetMapping("/page/{page}")
-    public ResponseEntity<Page<Usuario>> listPageable(@PathVariable Integer page){
-        Pageable pageable = PageRequest.of(page, 4);
-        return new ResponseEntity<>(userService.findAll(pageable), HttpStatus.OK);
+        return new ResponseEntity<>(Utils.convertirListaAPagina(usuarios,pageable), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

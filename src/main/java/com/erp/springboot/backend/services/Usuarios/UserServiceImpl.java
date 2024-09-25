@@ -46,6 +46,21 @@ public class UserServiceImpl implements IUserService {
         return userRepository.findById(id);
     }
 
+    /**
+     * Busca usuarios con cierto patron en el nombre
+     * @param nombre nombre a buscar
+     * @return lista de usuarios con el nombre deseado
+     */
+    @Override
+    @Transactional
+    public List<Usuario> findByNombre(String nombre) {
+        return userRepository.findByNombreContainsIgnoreCase(nombre);
+    }
+
+    @Override
+    @Transactional
+    public List<Usuario> findAll(){ return (List<Usuario>) userRepository.findAll(); }
+
     @Override
     @Transactional
     public Usuario save(Usuario usuario) {
