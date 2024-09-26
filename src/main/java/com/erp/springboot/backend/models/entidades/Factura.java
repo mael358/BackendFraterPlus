@@ -13,6 +13,11 @@ public class Factura {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "no_factura", nullable = false)
+    private String no_factura;
+
     @Size(max = 40)
     @NotNull
     @Column(name = "nit_emisor", nullable = false, length = 40)
@@ -55,6 +60,51 @@ public class Factura {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedido_id;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "proveedor_id", nullable = false)
+    private Pedido proveedor_id;
+
+    public @Size(max = 255) @NotNull String getNo_factura() {
+        return no_factura;
+    }
+
+    public void setNo_factura(@Size(max = 255) @NotNull String no_factura) {
+        this.no_factura = no_factura;
+    }
+
+    public @Size(max = 40) @NotNull String getNit_emisor() {
+        return nit_emisor;
+    }
+
+    public void setNit_emisor(@Size(max = 40) @NotNull String nit_emisor) {
+        this.nit_emisor = nit_emisor;
+    }
+
+    public @Size(max = 255) @NotNull String getDireccion_emisor() {
+        return direccion_emisor;
+    }
+
+    public void setDireccion_emisor(@Size(max = 255) @NotNull String direccion_emisor) {
+        this.direccion_emisor = direccion_emisor;
+    }
+
+    public @NotNull Boolean getTipo_factura() {
+        return tipo_factura;
+    }
+
+    public void setTipo_factura(@NotNull Boolean tipo_factura) {
+        this.tipo_factura = tipo_factura;
+    }
+
+    public Pedido getProveedor_id() {
+        return proveedor_id;
+    }
+
+    public void setProveedor_id(Pedido proveedor_id) {
+        this.proveedor_id = proveedor_id;
+    }
 
     public String getObservaciones() {
         return observaciones;
