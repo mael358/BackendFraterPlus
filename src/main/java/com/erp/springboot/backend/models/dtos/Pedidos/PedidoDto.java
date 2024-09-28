@@ -11,6 +11,7 @@ import com.erp.springboot.backend.models.entidades.PedidoDetalle;
 public class PedidoDto {
     private int id;
     private Instant fecha;
+    private long cliente_id;
     private String cliente;
     private String estado;
     private String observaciones;
@@ -18,6 +19,7 @@ public class PedidoDto {
 
     public PedidoDto(Pedido _pedido, List<PedidoDetalle> _pendDetailers) {
         this.id = _pedido.getId();
+        this.cliente_id = _pedido.getClienteid().getId();
         this.cliente = _pedido.getClienteid().getNombres().concat(" ");
         this.estado = _pedido.getEstadoid().getDescripcion();
         this.fecha = _pedido.getFechaCreacion();
@@ -27,6 +29,14 @@ public class PedidoDto {
             this.detalles.add(new PedidoDetalleDto(_pedidoDetalle));
         }
 
+    }
+
+    public long getCliente_id() {
+        return cliente_id;
+    }
+
+    public void setCliente_id(long cliente_id) {
+        this.cliente_id = cliente_id;
     }
 
     public String getObservaciones() {

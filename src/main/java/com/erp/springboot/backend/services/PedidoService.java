@@ -99,6 +99,9 @@ public class PedidoService implements IPedidoService {
      */
     @Override
     public PedidoDto findById(int id){
+        if (!pedidoDao.existsById(id)) {
+            return null;
+        }
         PedidoDto pedido = new PedidoDto(pedidoDao.findById(id).get(),pedidoDao.detallesPedido(id) );
         for (PedidoDetalleDto detalleDto : pedido.getDetalles()) {
             detalleDto.setCantidadDisponible(obtenerExistencia(((int)detalleDto.getArticuloId())));

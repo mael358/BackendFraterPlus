@@ -57,7 +57,7 @@ public class Factura {
     @Column(name = "observaciones",nullable = false)
     private String observaciones;
 
-    @JsonIgnore
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente_id;
@@ -67,7 +67,7 @@ public class Factura {
     @JoinColumn(name = "pedido_id", nullable = false)
     private Pedido pedido_id;
 
-    @JsonIgnore
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "proveedor_id", nullable = false)
     private Proveedor proveedor_id;

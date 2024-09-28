@@ -122,7 +122,7 @@ public class FacturaService implements IFacturaService {
 
     @Override
     public Factura obtenerFacturaCompraPorId(int id) {
-        var factura = facturaDao.findById((long)id);
+        var factura = facturaDao.findByIdCompra((long)id);
         if (factura != null && !factura.getTipo_factura()) {
             return factura;
         }else {
@@ -132,7 +132,7 @@ public class FacturaService implements IFacturaService {
 
     @Override
     public Factura obtenerFacturaVentaPorId(int id) {
-        var factura = facturaDao.findById((long)id);
+        var factura = facturaDao.findByIdVenta((long)id);
         if (factura != null && factura.getTipo_factura()) {
             return factura;
         }else {
