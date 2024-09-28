@@ -49,7 +49,7 @@ public class FacturaRestController {
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    @PostMapping("/factura/compra")
+    @PostMapping("/facturas/compra")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Factura> crearCompra(@RequestBody FacturaCompraDto facturaDto) {
         Factura factura = facturaService.CrearCompra(facturaDto);
@@ -57,7 +57,7 @@ public class FacturaRestController {
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    @PostMapping("/factura/venta")
+    @PostMapping("/facturas/venta")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Factura> crearVenta(@RequestBody FacturaVentaDto facturaDto) {
         Factura factura = facturaService.CrearVenta(facturaDto);
@@ -65,7 +65,7 @@ public class FacturaRestController {
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    @GetMapping("/factura/compra/{id}")
+    @GetMapping("/facturas/compra/{id}")
     public ResponseEntity<Factura> obtenerFacturaPorId(@PathVariable int id) {
         Factura factura = facturaService.obtenerFacturaPorId(id);
         return ResponseEntity.ok(factura);
@@ -86,14 +86,14 @@ public class FacturaRestController {
     }
 
     @Secured({"ROLE_ADMIN"})
-    @PutMapping("/factura/{id}")
+    @PutMapping("/facturas/{id}")
     public ResponseEntity<Factura> actualizarFactura(@PathVariable int id, @RequestBody FacturaDto facturaDto) {
         Factura facturaActualizada = facturaService.actualizarFactura(id, facturaDto);
         return ResponseEntity.ok(facturaActualizada);
     }
 
     @Secured({"ROLE_ADMIN"})
-    @DeleteMapping("/factura/anular/{id}")
+    @DeleteMapping("/facturas/anular/{id}")
     public ResponseEntity<Void> eliminarFactura(@PathVariable int id) {
         facturaService.eliminarFactura(id);
         return ResponseEntity.noContent().build();
