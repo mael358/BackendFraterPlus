@@ -66,8 +66,15 @@ public class FacturaRestController {
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/facturas/compra/{id}")
-    public ResponseEntity<Factura> obtenerFacturaPorId(@PathVariable int id) {
-        Factura factura = facturaService.obtenerFacturaPorId(id);
+    public ResponseEntity<Factura> obtenerFacturaCompraPorId(@PathVariable int id) {
+        Factura factura = facturaService.obtenerFacturaCompraPorId(id);
+        return ResponseEntity.ok(factura);
+    }
+
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+    @GetMapping("/facturas/venta/{id}")
+    public ResponseEntity<Factura> obtenerFacturaVentaPorId(@PathVariable int id) {
+        Factura factura = facturaService.obtenerFacturaVentaPorId(id);
         return ResponseEntity.ok(factura);
     }
 

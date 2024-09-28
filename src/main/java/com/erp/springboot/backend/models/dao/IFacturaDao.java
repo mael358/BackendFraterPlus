@@ -13,4 +13,9 @@ public interface IFacturaDao extends CrudRepository<Factura, Long> {
     @EntityGraph(attributePaths = {"detalle_factura", "detalle_factura.articuloid"})
     @Query("select fc from Factura fc where fc.tipo_factura = :tipoFactura")
     List<Factura> findAllByTipoFactura(boolean tipoFactura);
+
+
+    @EntityGraph(attributePaths = {"detalle_factura", "detalle_factura.articuloid"})
+    @Query("select fc from Factura fc where fc.id = :id")
+    Factura findById(long id);
 }

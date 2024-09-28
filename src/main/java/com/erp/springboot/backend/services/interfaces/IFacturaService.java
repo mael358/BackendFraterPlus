@@ -13,7 +13,9 @@ public interface IFacturaService {
 
     Factura CrearVenta(FacturaVentaDto facturaDto);
 
-    Factura obtenerFacturaPorId(int id);
+    Factura obtenerFacturaCompraPorId(int id);
+
+    Factura obtenerFacturaVentaPorId(int id);
 
     List<Factura> listarFacturasCompra();
 

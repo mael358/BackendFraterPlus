@@ -121,9 +121,27 @@ public class FacturaService implements IFacturaService {
     }
 
     @Override
-    public Factura obtenerFacturaPorId(int id) {
-        return facturaDao.findById((long)id)
-                .orElseThrow(() -> new RuntimeException("Factura no encontrada"));
+    public Factura obtenerFacturaCompraPorId(int id) {
+        var factura = facturaDao.findById((long)id);
+        if (!factura.getTipo_factura()) {
+            return factura;
+        }else {
+            return null;
+        }
+    }
+
+    @Override
+    public Factura obtenerFacturaVentaPorId(int id) {
+        var factura = facturaDao.findById((long)id);
+        if (factura.getTipo_factura()) {
+            return factura;
+        }else {
+            return null;
+        }
+    }
+
+    private Factura obtenerFacturaPorId(int id) {
+        return facturaDao.findById((long)id);
     }
 
 
