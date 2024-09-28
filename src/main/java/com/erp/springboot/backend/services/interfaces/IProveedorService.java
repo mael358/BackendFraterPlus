@@ -14,9 +14,9 @@ public interface IProveedorService {
 
     List<Proveedor> findByNombre(String nombre);
 
-    void save(Proveedor proveedor);
+    Proveedor save(Proveedor proveedor);
 
-    void update(Proveedor proveedor);
+    Proveedor update(Proveedor proveedor);
 
     void delete(Integer id) throws Exception;
 

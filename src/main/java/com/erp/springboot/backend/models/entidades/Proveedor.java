@@ -17,7 +17,6 @@ public class Proveedor {
     @Column(name = "nombres", nullable = false, length = 150)
     private String nombres;
 
-
     @Size(max = 255)
     @Column(name = "direccion")
     private String direccion;

@@ -38,13 +38,27 @@ INSERT INTO pedido (observaciones, fecha_creacion, cliente_id, estado_id) VALUES
 ('Pedido de seguimiento', '2024-09-04 09:20:00', 9, 4),
 ('Pedido cancelado por el cliente', '2024-09-05 12:10:00', 10, 5);
 
--- Datos de prueba para la tabla Factura
-INSERT INTO factura (nit_emisor, observaciones, nombre_emisor, monto_total, direccion_emisor, tipo_factura, departamento_receptor, cliente_id, pedido_id) VALUES
-  ('12345678', 'Factura correspondiente al pedido 1', 'Distribuidora X', 5200.00, 'Zona 1, Ciudad de Guatemala', 0, 'Guatemala', 6, 11),
-  ('87654321', 'Factura correspondiente al pedido 2', 'Distribuidora Y', 200.00, 'Zona 5, Ciudad de Guatemala', 1, 'Guatemala', 7, 12),
-  ('13572468', 'Factura correspondiente al pedido 3', 'Distribuidora Z', 250.00, 'Zona 10, Ciudad de Guatemala', 0, 'Guatemala', 8, 13),
-  ('46802468', 'Factura correspondiente al pedido 4', 'Distribuidora A', 3200.00, 'Zona 7, Ciudad de Guatemala', 1, 'Escuintla', 9, 14),
-  ('97531864', 'Factura correspondiente al pedido 5', 'Distribuidora B', 450.00, 'Zona 3, Ciudad de Guatemala', 0, 'Guatemala', 10, 15);
+-- Datos de prueba para la tabla Factura con fecha de creación actual
+INSERT INTO factura (
+    no_factura,
+    nit_emisor,
+    observaciones,
+    nombre_emisor,
+    monto_total,
+    direccion_emisor,
+    tipo_factura,
+    departamento_receptor,
+    fecha_creacion,
+    cliente_id,
+    pedido_id,
+    proveedor_id
+) VALUES
+      ('F001', '12345678', 'Factura correspondiente al pedido 1', 'Distribuidora X', 5200.00, 'Zona 1, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 6, 11, 1),
+      ('F002', '87654321', 'Factura correspondiente al pedido 2', 'Distribuidora Y', 200.00, 'Zona 5, Ciudad de Guatemala', 1, 'Guatemala', NOW(), 7, 12, 2),
+      ('F003', '13572468', 'Factura correspondiente al pedido 3', 'Distribuidora Z', 250.00, 'Zona 10, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 8, 13, 3),
+      ('F004', '46802468', 'Factura correspondiente al pedido 4', 'Distribuidora A', 3200.00, 'Zona 7, Ciudad de Guatemala', 1, 'Escuintla', NOW(), 9, 14, 4),
+      ('F005', '97531864', 'Factura correspondiente al pedido 5', 'Distribuidora B', 450.00, 'Zona 3, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 10, 15, 5);
+
 
 -- Datos de prueba para la tabla Detalle_Factura
 INSERT INTO detalle_Factura (cantidad, precio_unitario, no_linea, factura_id, articulo_id) VALUES

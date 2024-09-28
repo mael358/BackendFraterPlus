@@ -1,12 +1,13 @@
 package com.erp.springboot.backend.models.entidades;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Detalle_Factura")
+@Table(name = "detalle_Factura")
 public class DetalleFactura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +28,14 @@ public class DetalleFactura {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Articuloid", nullable = false)
+    @JoinColumn(name = "articulo_id", nullable = false)
     private Articulo articuloid;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "factura_id", nullable = false)
+    @JsonBackReference
+    private Factura factura;
 
     public Integer getId() {
         return id;
@@ -62,12 +69,35 @@ public class DetalleFactura {
         this.no_linea = noLinea;
     }
 
-    public Articulo getArticuloid() {
+    public @NotNull BigDecimal getPrecio_unitario() {
+        return precio_unitario;
+    }
+
+    public void setPrecio_unitario(@NotNull BigDecimal precio_unitario) {
+        this.precio_unitario = precio_unitario;
+    }
+
+    public @NotNull Integer getNo_linea() {
+        return no_linea;
+    }
+
+    public void setNo_linea(@NotNull Integer no_linea) {
+        this.no_linea = no_linea;
+    }
+
+    public @NotNull Articulo getArticuloid() {
         return articuloid;
     }
 
-    public void setArticuloid(Articulo articuloid) {
+    public void setArticuloid(@NotNull Articulo articuloid) {
         this.articuloid = articuloid;
     }
 
+    public @NotNull Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(@NotNull Factura factura) {
+        this.factura = factura;
+    }
 }

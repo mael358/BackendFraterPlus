@@ -45,4 +45,20 @@ public class ProveedorController {
     public List<Proveedor> filtrarProductos(@PathVariable String term){
         return proveedorService.findByNombresOrDireccionOrNitOrTelefonoOrCorreoContainingIgnoreCase(term);
     }
+
+    @PostMapping("/crear")
+    public ResponseEntity<Proveedor> CrearProveedor(@RequestBody Proveedor proveedor) {
+        return ResponseEntity.ok(proveedorService.save(proveedor));
+    }
+
+    @PutMapping("/editar")
+    public ResponseEntity<Proveedor> EditarProveedor(@RequestBody Proveedor proveedor) {
+        return ResponseEntity.ok(proveedorService.update(proveedor));
+    }
+
+    @DeleteMapping("/eliminar")
+    public ResponseEntity<String> eliminarProveedores(@RequestParam Integer id) throws Exception {
+        proveedorService.delete(id);
+        return ResponseEntity.ok("Proveedor eliminado");
+    }
 }

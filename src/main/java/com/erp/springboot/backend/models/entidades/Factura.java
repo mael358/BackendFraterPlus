@@ -1,9 +1,12 @@
 package com.erp.springboot.backend.models.entidades;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "factura")
@@ -32,6 +35,9 @@ public class Factura {
     @Column(name = "monto_total", nullable = false, precision = 19, scale = 4)
     private BigDecimal monto_total;
 
+    @Column(name = "fecha_creacion", nullable = false)
+    private Instant fecha_creacion;
+
     @Size(max = 255)
     @NotNull
     @Column(name = "direccion_emisor", nullable = false)
@@ -41,6 +47,7 @@ public class Factura {
     @Column(name = "tipo_factura", nullable = false)
     private Boolean tipo_factura = false;
 
+    @JsonIgnore
     @Size(max = 100)
     @Column(name = "departamento_receptor", length = 100)
     private String departamento_receptor;
@@ -50,7 +57,6 @@ public class Factura {
     @Column(name = "observaciones",nullable = false)
     private String observaciones;
 
-    @NotNull
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cliente_id", nullable = false)
@@ -64,7 +70,27 @@ public class Factura {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "proveedor_id", nullable = false)
-    private Pedido proveedor_id;
+    private Proveedor proveedor_id;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleFactura> detalle_factura;
+
+    public List<DetalleFactura> getDetalle_factura() {
+        return detalle_factura;
+    }
+
+    public void setDetalle_factura(List<DetalleFactura> detalle_factura) {
+        this.detalle_factura = detalle_factura;
+    }
+
+    public Instant getFecha_creacion() {
+        return fecha_creacion;
+    }
+
+    public void setFecha_creacion(@NotNull Instant fecha_creacion) {
+        this.fecha_creacion = fecha_creacion;
+    }
 
     public @Size(max = 255) @NotNull String getNo_factura() {
         return no_factura;
@@ -98,11 +124,11 @@ public class Factura {
         this.tipo_factura = tipo_factura;
     }
 
-    public Pedido getProveedor_id() {
+    public Proveedor getProveedor_id() {
         return proveedor_id;
     }
 
-    public void setProveedor_id(Pedido proveedor_id) {
+    public void setProveedor_id(Proveedor proveedor_id) {
         this.proveedor_id = proveedor_id;
     }
 

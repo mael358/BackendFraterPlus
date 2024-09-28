@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
+@Table(name = "lote")
 public class Lote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,12 +27,10 @@ public class Lote {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "articulo_id", nullable = false)
-    private Articulo articulo_id;
+    private Articulo articuloid;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "compra_id", nullable = false)
-    private Compra compra_id;
+    @Column(name = "compra_id")
+    private int compra_id;
 
     public Integer getId() {
         return id;
@@ -45,40 +44,39 @@ public class Lote {
         return fecha_vencimiento;
     }
 
-    public void setFecha_vencimiento(Instant fechaVencimiento) {
-        this.fecha_vencimiento = fechaVencimiento;
+    public void setFecha_vencimiento(Instant fecha_vencimiento) {
+        this.fecha_vencimiento = fecha_vencimiento;
     }
 
-    public Integer getCantidad_inicial() {
+    public @NotNull Integer getCantidad_inicial() {
         return cantidad_inicial;
     }
 
-    public void setCantidad_inicial(Integer cantidadInicial) {
-        this.cantidad_inicial = cantidadInicial;
+    public void setCantidad_inicial(@NotNull Integer cantidad_inicial) {
+        this.cantidad_inicial = cantidad_inicial;
     }
 
-    public Integer getCantidad_disponible() {
+    public @NotNull Integer getCantidad_disponible() {
         return cantidad_disponible;
     }
 
-    public void setCantidad_disponible(Integer cantidadDisponible) {
-        this.cantidad_disponible = cantidadDisponible;
+    public void setCantidad_disponible(@NotNull Integer cantidad_disponible) {
+        this.cantidad_disponible = cantidad_disponible;
     }
 
-    public Articulo getArticulo_id() {
-        return articulo_id;
+    public @NotNull Articulo getArticuloid() {
+        return articuloid;
     }
 
-    public void setArticulo_id(Articulo articuloid) {
-        this.articulo_id = articuloid;
+    public void setArticuloid(@NotNull Articulo articuloid) {
+        this.articuloid = articuloid;
     }
 
-    public Compra getCompra_id() {
+    public int getCompra_id() {
         return compra_id;
     }
 
-    public void setCompra_id(Compra compra) {
-        this.compra_id = compra;
+    public void setCompra_id(int compra_id) {
+        this.compra_id = compra_id;
     }
-
 }

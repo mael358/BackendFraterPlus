@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
+@Table(name = "movimiento_lote")
 public class MovimientoLote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,7 @@ public class MovimientoLote {
     private Instant fecha_movimiento;
 
     @Column(name = "referencia_detalle_factura")
-    private Integer referencia_detalle_factura;
+    private Integer ReferenciaDetalleFactura;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -65,11 +66,11 @@ public class MovimientoLote {
     }
 
     public Integer getReferencia_detalle_factura() {
-        return referencia_detalle_factura;
+        return ReferenciaDetalleFactura;
     }
 
     public void setReferencia_detalle_factura(Integer referenciaDetalleFactura) {
-        this.referencia_detalle_factura = referenciaDetalleFactura;
+        this.ReferenciaDetalleFactura = referenciaDetalleFactura;
     }
 
     public Lote getLote_id() {

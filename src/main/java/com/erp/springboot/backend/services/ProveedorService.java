@@ -43,16 +43,16 @@ public class ProveedorService implements IProveedorService {
      * @param proveedor
      */
     @Override
-    public void save(Proveedor proveedor) {
-        proveedorDao.save(proveedor);
+    public Proveedor save(Proveedor proveedor) {
+        return proveedorDao.save(proveedor);
     }
 
     /**
      * @param proveedor
      */
     @Override
-    public void update(Proveedor proveedor) {
-        proveedorDao.save(proveedor);
+    public Proveedor update(Proveedor proveedor) {
+        return proveedorDao.save(proveedor);
     }
 
     /**
@@ -63,8 +63,9 @@ public class ProveedorService implements IProveedorService {
         Proveedor proveedor = proveedorDao.findById(id).isPresent()?proveedorDao.findById(id).get():null;
         if (proveedor != null) {
             proveedorDao.delete(proveedor);
+        }else{
+            throw new Exception("El proveedor no existe");
         }
-        throw new Exception( "Proveedor no encontrado");
     }
 
     @Override
