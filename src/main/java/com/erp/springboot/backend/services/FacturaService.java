@@ -147,12 +147,12 @@ public class FacturaService implements IFacturaService {
 
     @Override
     public List<Factura> listarFacturasCompra() {
-        return (List<Factura>) facturaDao.findAllByTipoFactura(false);
+        return (List<Factura>) facturaDao.findAllByTipoFacturaCompra();
     }
 
     @Override
     public List<Factura> listarFacturasVenta() {
-        return (List<Factura>) facturaDao.findAllByTipoFactura(true);
+        return (List<Factura>) facturaDao.findAllByTipoFacturaVenta();
     }
 
     @Override
