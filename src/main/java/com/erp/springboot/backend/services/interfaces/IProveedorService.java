@@ -20,5 +20,5 @@ public interface IProveedorService {
 
     void delete(Integer id) throws Exception;
 
-
+    List<Proveedor> findByNombresOrDireccionOrNitOrTelefonoOrCorreoContainingIgnoreCase(String term);
 }

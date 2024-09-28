@@ -1,4 +1,5 @@
 package com.erp.springboot.backend.controllers;
+import com.erp.springboot.backend.models.entidades.Cliente;
 import com.erp.springboot.backend.models.entidades.Proveedor;
 import com.erp.springboot.backend.services.ProveedorService;
 import com.erp.springboot.backend.tool.utils;
@@ -38,5 +39,10 @@ public class ProveedorController {
     @GetMapping("/{id}")
     public ResponseEntity<Proveedor> ObtenerProveedorPorId(@PathVariable Integer id) {
         return ResponseEntity.ok(proveedorService.findById(id));
+    }
+
+    @GetMapping("/filtrar-proveedores/{term}")
+    public List<Proveedor> filtrarProductos(@PathVariable String term){
+        return proveedorService.findByNombresOrDireccionOrNitOrTelefonoOrCorreoContainingIgnoreCase(term);
     }
 }

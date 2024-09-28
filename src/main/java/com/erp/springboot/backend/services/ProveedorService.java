@@ -66,4 +66,9 @@ public class ProveedorService implements IProveedorService {
         }
         throw new Exception( "Proveedor no encontrado");
     }
+
+    @Override
+    public List<Proveedor> findByNombresOrDireccionOrNitOrTelefonoOrCorreoContainingIgnoreCase(String term) {
+        return proveedorDao.findByNombresOrDireccionOrNitOrTelefonoOrCorreoContainingIgnoreCase(term);
+    }
 }
