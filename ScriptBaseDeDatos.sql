@@ -75,7 +75,6 @@ cliente_id INT COMMENT 'Identificador del cliente relacionado con la factura',
 pedido_id INT COMMENT 'Identificador del pedido relacionado con la factura',
 proveedor_id INT COMMENT 'Identificador del proveedor creador de la factura',
 FOREIGN KEY (cliente_id) REFERENCES cliente(id),
-FOREIGN KEY (pedido_id) REFERENCES pedido(id),
 FOREIGN KEY (proveedor_id) REFERENCES proveedor(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabla que almacena la información de las facturas emitidas';
 
@@ -121,9 +120,13 @@ cantidad INT NOT NULL COMMENT 'Cantidad de artículos solicitados en la línea d
 precio_ofertado DECIMAL(19,4) NOT NULL COMMENT 'Precio ofertado en el pedido',
 articulo_id INT NOT NULL COMMENT 'Identificador del artículo asociado a la línea del pedido',
 pedido_id INT NOT NULL COMMENT 'Identificador del pedido al que pertenece el detalle',
-FOREIGN KEY (articulo_id) REFERENCES articulo(id),
-FOREIGN KEY (pedido_id) REFERENCES pedido(id)
+FOREIGN KEY (articulo_id) REFERENCES articulo(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Tabla que detalla los artículos específicos incluidos en cada pedido';
+
+ALTER TABLE pedido_detalle
+ADD CONSTRAINT pedido_detalle_ibfk_2
+FOREIGN KEY (pedido_id) REFERENCES pedido(id)
+ON DELETE CASCADE;
 
 -- Tabla de estado de pedido
 CREATE TABLE usuario (

@@ -8,6 +8,7 @@ import com.erp.springboot.backend.models.entidades.Pedido;
 import com.erp.springboot.backend.models.entidades.PedidoDetalle;
 import com.erp.springboot.backend.models.entidades.vistas.VwArticulosInventario;
 import com.erp.springboot.backend.services.interfaces.IPedidoService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -216,7 +217,18 @@ public class PedidoService implements IPedidoService {
      * @param id
      */
     @Override
-    public void delete(int id) { pedidoDao.deleteById(id) ;}
+    public void delete(int id) {
+        Pedido pedido = pedidoDao.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pedido no encontrado"));
+
+        // Eliminar manualmente los detalles
+        detallePedidoDao.deleteAll(pedido.getDetalles());
+
+
+        pedidoDao.deleteById(id);
+
+    }
+
 
     /**
      * Obtiene la existencia actual de un articulo
