@@ -32,11 +32,11 @@ INSERT INTO estado (descripcion) VALUES
 
 -- Datos de prueba para la tabla Pedido
 INSERT INTO pedido (observaciones, fecha_creacion, cliente_id, estado_id) VALUES
-('Pedido urgente', '2024-09-01 10:00:00', 6, 1),
-('Pedido normal', '2024-09-02 11:30:00', 7, 2),
-('Pedido express', '2024-09-03 15:45:00', 8, 3),
-('Pedido de seguimiento', '2024-09-04 09:20:00', 9, 4),
-('Pedido cancelado por el cliente', '2024-09-05 12:10:00', 10, 5);
+('Pedido urgente', '2024-09-01 10:00:00', 1, 1),
+('Pedido normal', '2024-09-02 11:30:00', 2, 2),
+('Pedido express', '2024-09-03 15:45:00', 3, 3),
+('Pedido de seguimiento', '2024-09-04 09:20:00', 4, 4),
+('Pedido cancelado por el cliente', '2024-09-05 12:10:00', 5, 5);
 
 -- Datos de prueba para la tabla Factura con fecha de creación actual
 INSERT INTO factura (
@@ -53,30 +53,30 @@ INSERT INTO factura (
     pedido_id,
     proveedor_id
 ) VALUES
-      ('F001', '12345678', 'Factura correspondiente al pedido 1', 'Distribuidora X', 5200.00, 'Zona 1, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 6, 11, 1),
-      ('F002', '87654321', 'Factura correspondiente al pedido 2', 'Distribuidora Y', 200.00, 'Zona 5, Ciudad de Guatemala', 1, 'Guatemala', NOW(), 7, 12, 2),
-      ('F003', '13572468', 'Factura correspondiente al pedido 3', 'Distribuidora Z', 250.00, 'Zona 10, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 8, 13, 3),
-      ('F004', '46802468', 'Factura correspondiente al pedido 4', 'Distribuidora A', 3200.00, 'Zona 7, Ciudad de Guatemala', 1, 'Escuintla', NOW(), 9, 14, 4),
-      ('F005', '97531864', 'Factura correspondiente al pedido 5', 'Distribuidora B', 450.00, 'Zona 3, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 10, 15, 5);
+      ('F001', '12345678', 'Factura correspondiente al pedido 1', 'Distribuidora X', 5200.00, 'Zona 1, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 1, 1, 1),
+      ('F002', '87654321', 'Factura correspondiente al pedido 2', 'Distribuidora Y', 200.00, 'Zona 5, Ciudad de Guatemala', 1, 'Guatemala', NOW(), 2, 2, 2),
+      ('F003', '13572468', 'Factura correspondiente al pedido 3', 'Distribuidora Z', 250.00, 'Zona 10, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 3, 3, 3),
+      ('F004', '46802468', 'Factura correspondiente al pedido 4', 'Distribuidora A', 3200.00, 'Zona 7, Ciudad de Guatemala', 1, 'Escuintla', NOW(), 4, 4, 4),
+      ('F005', '97531864', 'Factura correspondiente al pedido 5', 'Distribuidora B', 450.00, 'Zona 3, Ciudad de Guatemala', 0, 'Guatemala', NOW(), 5, 5, 5);
 
 
 -- Datos de prueba para la tabla Detalle_Factura
 INSERT INTO detalle_Factura (cantidad, precio_unitario, no_linea, factura_id, articulo_id) VALUES
-(1, 5000.00, 1, 21, 1),
-(2, 200.00, 2, 21, 2),
-(1, 200.00, 1, 22, 2),
-(1, 250.00, 1, 23, 3);
+(1, 5000.00, 1, 1, 1),
+(2, 200.00, 2, 1, 2),
+(1, 200.00, 1, 2, 2),
+(1, 250.00, 1, 3, 3);
 
 
 -- Datos de prueba para la tabla Pedido_Detalle
 INSERT INTO pedido_detalle (linea, cantidad, precio_ofertado, articulo_id, pedido_id) VALUES
-(1, 1, 5000.00, 1, 11),
-(2, 2, 200.00, 2, 11),
-(1, 1, 200.00, 2, 12),
-(1, 1, 250.00, 3, 13),
-(1, 1, 950.00, 4, 14),
-(2, 1, 1500.00, 5, 14),
-(1, 1, 1500.00, 5, 15);
+(1, 1, 5000.00, 1, 1),
+(2, 2, 200.00, 2, 1),
+(1, 1, 200.00, 2, 2),
+(1, 1, 250.00, 3, 3),
+(1, 1, 950.00, 4, 4),
+(2, 1, 1500.00, 5, 4),
+(1, 1, 1500.00, 5, 5);
 
 -- Datos de prueba para la tabla Usuario (correo corregido)
 INSERT INTO usuario (nombre, username, password, enabled, apellido, email) VALUES
@@ -89,7 +89,7 @@ INSERT INTO usuario (nombre, username, password, enabled, apellido, email) VALUE
 
 -- Datos de prueba para la tabla Rol
 INSERT INTO rol (nombre, descripcion) VALUES
-('Administrador', 'Tiene acceso completo a todas las funcionalidades del sistema'),
+('ROLE_ADMIN', 'Tiene acceso completo a todas las funcionalidades del sistema'),
 ('Vendedor', 'Acceso a la gestión de ventas y pedidos'),
 ('Almacén', 'Acceso a la gestión de inventarios y lotes'),
 ('Soporte', 'Acceso a la atención al cliente y resolución de problemas'),

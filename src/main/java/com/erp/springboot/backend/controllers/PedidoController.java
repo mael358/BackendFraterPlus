@@ -97,9 +97,9 @@ public class PedidoController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Pedido> EliminarPedido(@RequestBody Pedido pedido){
-        pedidoService.delete(pedido.getId());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Pedido> AnularPedido(@PathVariable int id){
+        pedidoService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
