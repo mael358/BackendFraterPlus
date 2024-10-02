@@ -5,6 +5,7 @@ import com.erp.springboot.backend.services.ProveedorService;
 import com.erp.springboot.backend.tool.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
@@ -57,8 +58,8 @@ public class ProveedorController {
     }
 
     @DeleteMapping("/eliminar")
-    public ResponseEntity<String> eliminarProveedores(@RequestParam Integer id) throws Exception {
+    public ResponseEntity<Proveedor> eliminarProveedores(@RequestParam Integer id) throws Exception {
         proveedorService.delete(id);
-        return ResponseEntity.ok("Proveedor eliminado");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
