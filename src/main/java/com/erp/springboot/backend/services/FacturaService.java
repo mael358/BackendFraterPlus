@@ -1,4 +1,5 @@
 package com.erp.springboot.backend.services;
+
 import com.erp.springboot.backend.models.dao.IFacturaDao;
 import com.erp.springboot.backend.models.dao.IProveedorDao;
 import com.erp.springboot.backend.models.dao.IClienteDao;
@@ -6,7 +7,6 @@ import com.erp.springboot.backend.models.dao.IArticuloDao;
 import com.erp.springboot.backend.models.dtos.facturas.*;
 import com.erp.springboot.backend.models.entidades.*;
 import com.erp.springboot.backend.services.interfaces.IFacturaService;
-import com.erp.springboot.backend.services.interfaces.IInventarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
