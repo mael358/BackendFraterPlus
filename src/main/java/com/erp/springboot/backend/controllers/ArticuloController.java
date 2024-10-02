@@ -4,7 +4,10 @@ package com.erp.springboot.backend.controllers;
 import com.erp.springboot.backend.models.dao.IArticuloDao;
 import com.erp.springboot.backend.models.entidades.Articulo;
 import com.erp.springboot.backend.services.interfaces.ArticuloService;
+import com.erp.springboot.backend.tool.utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,8 @@ public class ArticuloController {
 
     private final IArticuloDao articuloDao;
 
+    private final utils Utils = new utils();
+
     @Autowired
     public ArticuloController(ArticuloService productService, IArticuloDao articuloDao) {
         this.productService = productService;
@@ -27,8 +32,9 @@ public class ArticuloController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Articulo>> list(){
-        return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<Articulo>> list(Pageable pageable){
+        var listado = productService.findAll();
+        return ResponseEntity.ok(Utils.convertirListaAPagina(listado, pageable));
     }
 
     @GetMapping("/{id}")
