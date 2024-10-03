@@ -19,9 +19,8 @@ public class Cliente {
     @Column(name = "nombres", nullable = false, length = 150)
     private String nombres;
 
-
-    @Column(name = "fecha_nacimiento")
-    private Instant fechaNacimiento;
+    @Column(name = "fecha_creacion")
+    private Instant fechaCreacion;
 
     @Column(name = "edad")
     private Integer edad;
@@ -38,13 +37,30 @@ public class Cliente {
     @Column(name = "DPI", length = 40)
     private String dpi;
 
+    //Add correo
+    @Size(max = 40)
+    @Column(name = "correo", length = 40)
+    private String correo;
+
+    //Add telefono
+    @Size(max = 40)
+    @Column(name = "telefono", length = 40)
+    private String telefono;
+
+    //Add extension
+    @Size(max = 40)
+    @Column(name = "extension", length = 40)
+    private String extension;
+
+
+
     public Cliente() {
     }
 
-    public Cliente(Long id, String nombres, Instant fechaNacimiento, Integer edad, String direccion, String nit, String dpi) {
+    public Cliente(Long id, String nombres, Instant fechaCreacion, Integer edad, String direccion, String nit, String dpi) {
         this.id = id;
         this.nombres = nombres;
-        this.fechaNacimiento = fechaNacimiento;
+        this.fechaCreacion = fechaCreacion;
         this.edad = edad;
         this.direccion = direccion;
         this.nit = nit;
@@ -67,12 +83,12 @@ public class Cliente {
         this.nombres = nombres;
     }
 
-    public Instant getFechaNacimiento() {
-        return fechaNacimiento;
+    public Instant getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setFechaNacimiento(Instant fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaCreacion(Instant fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public Integer getEdad() {
@@ -107,4 +123,27 @@ public class Cliente {
         this.dpi = dpi;
     }
 
+    public @Size(max = 40) String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(@Size(max = 40) String correo) {
+        this.correo = correo;
+    }
+
+    public @Size(max = 40) String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(@Size(max = 40) String telefono) {
+        this.telefono = telefono;
+    }
+
+    public @Size(max = 40) String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(@Size(max = 40) String extension) {
+        this.extension = extension;
+    }
 }

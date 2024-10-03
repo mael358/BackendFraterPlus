@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,7 @@ public class ClienteRestController {
         }
 
         try {
+            cliente.setFechaCreacion(Instant.now());
             nuevoCliente = clienteService.save(cliente);
         } catch(DataAccessException e) {
             response.put("mensaje", "Error al realizar el insert a la base de datos");
@@ -122,9 +124,14 @@ public class ClienteRestController {
         Cliente clienteUpdated = null;
         try {
             clienteActual.setNombres(cliente.getNombres());
-            // TODO: Agregar correo
-            clienteActual.setFechaNacimiento(cliente.getFechaNacimiento());
-            // TODO: Agregar direccion
+            clienteActual.setCorreo(cliente.getCorreo());
+            clienteActual.setFechaCreacion(cliente.getFechaCreacion());
+            clienteActual.setDireccion(cliente.getDireccion());
+            clienteActual.setEdad(cliente.getEdad());
+            clienteActual.setNit(cliente.getNit());
+            clienteActual.setDpi(cliente.getDpi());
+            clienteActual.setTelefono(cliente.getTelefono());
+            clienteActual.setExtension(cliente.getExtension());
 
             clienteUpdated = clienteService.save(clienteActual);
         } catch(DataAccessException e) {

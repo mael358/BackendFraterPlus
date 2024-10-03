@@ -22,7 +22,7 @@ PRIMARY KEY (`id`)
 CREATE TABLE `cliente` (
 `id` int NOT NULL AUTO_INCREMENT,
 `nombres` varchar(150) NOT NULL COMMENT 'Nombres del cliente',
-`fecha_nacimiento` timestamp NULL DEFAULT NULL COMMENT 'Fecha de nacimiento del cliente',
+`fecha_creacion` timestamp NULL DEFAULT NULL COMMENT 'Fecha de nacimiento del cliente',
 `edad` int DEFAULT NULL COMMENT 'Edad del cliente calculada a partir de la fecha de nacimiento',
 `direccion` varchar(255) DEFAULT NULL COMMENT 'Dirección del cliente',
 `nit` varchar(40) DEFAULT NULL COMMENT 'Número de Identificación Tributaria del cliente',
