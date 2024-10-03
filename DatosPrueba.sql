@@ -123,14 +123,16 @@ INSERT INTO usuario_rol (usuario_id, rol_id) VALUES
                                                  (1, 5),  -- El usuario 1 (Juan Martínez) también tiene el rol de Gerente
                                                  (2, 4);  -- El usuario 2 (María López) también tiene el rol de Soporte
 
-/*
 -- Datos de prueba para la tabla Estado
 INSERT INTO estado (descripcion) VALUES
-('Pendiente'),
-('Procesado'),
-('Enviado'),
-('Entregado'),
-('Cancelado');
+                                     ('Pendiente'),
+                                     ('Procesado'),
+                                     ('Enviado'),
+                                     ('Entregado'),
+                                     ('Cancelado');
+
+/*
+
 
 -- Datos de prueba para la tabla Pedido
 INSERT INTO pedido (observaciones, fecha_creacion, cliente_id, estado_id) VALUES
