@@ -98,10 +98,10 @@ VALUES
 
 -- Datos de prueba para la tabla Usuario (correo corregido)
 INSERT INTO usuario (nombre, username, password, enabled, apellido, email) VALUES
-                                                                               ('Marcos', 'mvelasquez', '$2a$12$CL9rvW2ni.olqKkfYCxhkeqxOjmvR7.t6nIx0TLLSd3XeLUOnaKda', 1, 'Velasquez', 'mvelasquezh4@miumg.edu.gt'), -- Contraseña: password1
-                                                                               ('María', 'mlopez', '$2y$10$Yj3DkYpVv.xUQ9XG/dSbAu8E66qKAGjIZaW/y3KObBuOVcZpFdqcK', 1, 'López', 'maria.lopez@example.com'),       -- Contraseña: password2
-                                                                               ('Carlos', 'cperez', '$2y$10$LZjIyEtQUbw13zC0BcN1OeubrxGMxYIBdu9s4d6gTiKz4Yl/XVUqi', 0, 'Pérez', 'carlos.perez@example.com'),     -- Contraseña: password3
-                                                                               ('Ana', 'agonzalez', '$2y$10$RcMsAqwZFKZxB2Y2jVE3EesqZqZ6V3HygzXJpJGbJHmkbZp/s1Zse', 1, 'González', 'ana.gonzalez@example.com'),  -- Contraseña: password4
+                                                                               ('Marcos', 'mvelasquez', '$2a$12$CL9rvW2ni.olqKkfYCxhkeqxOjmvR7.t6nIx0TLLSd3XeLUOnaKda', 1, 'Velasquez', 'mvelasquezh4@miumg.edu.gt'), -- Contraseña: hola123
+                                                                               ('María', 'mlopez', '$2a$12$wcdCREGfpTmvpDPNukN7TubkffzfT6GaxozCHj6RIPih.z2nyWNBW', 1, 'López', 'maria.lopez@example.com'),       -- Contraseña: hola123
+                                                                               ('Carlos', 'srodas', '$2a$12$5zBeWCHTRXRC4Ao1gfJ13.8hUY7dTtyk2mqCGyBXuPqgMxiZVB2KS', 0, 'Pérez', 'carlos.perez@example.com'),     -- Contraseña: hola123
+                                                                               ('Ana', 'dvelasquez', '$2a$12$mMzuc4IGZYbDaJ5bZOn3DetWBO8PxPv.g55pAWrwphhprV2r76qhS', 1, 'González', 'ana.gonzalez@example.com'),  -- Contraseña: hola123
                                                                                ('Luis', 'lrodriguez', '$2y$10$E49gwNTUUL1c8fVYj13I/.bW5olITtXz9zpgo1aMufxHHZcxbPuXO', 1, 'Rodríguez', 'luis.rodriguez@example.com'),
                                                                                ('Diego', 'dialvehid', '$2a$12$NOOJu.lN7GtEi1SUvlFA0u1GAL3juAhRDmAx5cQA2WJ39Xlih1U/2', 1, 'Velasquez', 'skdiego27@gmail.com'); -- Contraseña: password5
 
@@ -115,10 +115,10 @@ INSERT INTO rol (nombre, descripcion) VALUES
 
 -- Datos de prueba para la tabla Usuario_Rol
 INSERT INTO usuario_rol (usuario_id, rol_id) VALUES
-                                                 (1, 1),  -- El usuario 1 (Juan Martínez) tiene el rol de Administrador
-                                                 (2, 2),  -- El usuario 2 (María López) tiene el rol de Vendedor
-                                                 (3, 3),  -- El usuario 3 (Carlos Pérez) tiene el rol de Almacén
-                                                 (4, 4),  -- El usuario 4 (Ana González) tiene el rol de Soporte
+                                                 (1, 1),  -- El usuario 1 (Marcos Velasquez) tiene el rol de Administrador
+                                                 (2, 1),  -- El usuario 2 (Misael Lopez) tiene el rol de Administrador
+                                                 (3, 1),  -- El usuario 3 (Samuel Rodas) tiene el rol de Administrador
+                                                 (4, 1),  -- El usuario 4 (Diego Velasquez) tiene el rol de Administrador
                                                  (5, 5),  -- El usuario 5 (Luis Rodríguez) tiene el rol de Gerente
                                                  (1, 5),  -- El usuario 1 (Juan Martínez) también tiene el rol de Gerente
                                                  (2, 4);  -- El usuario 2 (María López) también tiene el rol de Soporte

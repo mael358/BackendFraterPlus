@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.erp.springboot.backend.tool.utils;
 
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/proveedor")
 public class ProveedorController {
