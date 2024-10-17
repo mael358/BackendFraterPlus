@@ -236,9 +236,8 @@ public class PedidoService implements IPedidoService {
      * @return obtiene la cantidad actual de articulos disponibles en el inventario
      */
     public int obtenerExistencia(Integer codigoArticulo){
-        VwArticulosInventario optionalVista = vwArticulosInventarioDao.findById(codigoArticulo)
-                .orElseThrow(() -> new RuntimeException("Articulo no existente para buscar existencia"));
-        return optionalVista.getCantidadEnExistenciaActual().intValue();
+        Optional<VwArticulosInventario> optionalVista = vwArticulosInventarioDao.findById(codigoArticulo);
+        return optionalVista.map(vwArticulosInventario -> vwArticulosInventario.getCantidadEnExistenciaActual().intValue()).orElse(0);
     }
 
 
