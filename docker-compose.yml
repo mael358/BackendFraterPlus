@@ -8,6 +8,7 @@ pool:
 
 variables:
   imageName: 'fraterpluscontainerregistry.azurecr.io/frater-plus-backend'
+  dockerRegistryServiceConnection: 'acr-connection'
 
 stages:
   - stage: Build
