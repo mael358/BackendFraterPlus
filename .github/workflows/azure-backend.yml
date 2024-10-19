@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ${{ secrets.ACR_LOGIN_SERVER }}
-  IMAGE_NAME: backend-app
+  IMAGE_NAME: frater-plus-backend
 
 jobs:
   build:

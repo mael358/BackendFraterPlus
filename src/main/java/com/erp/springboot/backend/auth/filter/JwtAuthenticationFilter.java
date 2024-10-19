@@ -79,7 +79,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Map<String, String> body = new HashMap<>();
         body.put("token", jwt);
         body.put("username", username);
-        body.put("mensaje", String.format("Hola %s, has iniciado sesión con éxito, prueba de cambio azure y github", username));
+        body.put("mensaje", String.format("Hola %s, has iniciado sesión con éxito, prueba de cambio azure y github numero 2", username));
 
         response.getWriter().write(new ObjectMapper().writeValueAsString(body));
         response.setContentType(CONTENT_TYPE);
