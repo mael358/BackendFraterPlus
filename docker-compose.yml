@@ -1,10 +1,45 @@
-version: '3.4'
+trigger:
+  branches:
+    include:
+      - main
 
-services:
-  backendfraterplus:
-    image: backendfraterplus
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    ports:
-      - 8080:8080
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  imageName: 'fraterpluscontainerregistry.azurecr.io/frater-plus-backend'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        steps:
+          - task: Gradle@2
+            inputs:
+              gradleWrapperFile: 'gradlew'
+              gradleOptions: '-Xmx3072m'
+              tasks: 'clean build'
+
+          - task: CopyFiles@2
+            inputs:
+              contents: 'build/libs/*.jar'
+              targetFolder: '$(Build.ArtifactStagingDirectory)/app'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)/app'
+              ArtifactName: 'drop'
+
+  - stage: Build_and_Push_Image
+    dependsOn: Build
+    jobs:
+      - job: Build_and_Push
+        steps:
+          - task: Docker@2
+            inputs:
+              command: 'buildAndPush'
+              repository: '$(imageName)'
+              dockerfile: '**/Dockerfile'
+              tags: |
+                $(Build.BuildId)
+              containerRegistry: '$(dockerRegistryServiceConnection)'
