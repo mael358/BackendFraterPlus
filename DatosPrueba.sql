@@ -97,7 +97,7 @@ VALUES
     ('LIBRERÍA Y PIÑATERÍA WENDY', '2024-09-28 00:00:00', null, 'AV. CENTRAL PALÍN ESCUINTLA', null, null, 'wendy@gmail.com', '7824-6005', null);
 
 -- Datos de prueba para la tabla Usuario (correo corregido)
-INSERT INTO usuario (nombre, username, password, enabled, apellido, email) VALUES
+INSERT INTO FraterPlus.usuario (nombre, username, password, enabled, apellido, email) VALUES
                                                                                ('Marcos', 'mvelasquez', '$2a$12$CL9rvW2ni.olqKkfYCxhkeqxOjmvR7.t6nIx0TLLSd3XeLUOnaKda', 1, 'Velasquez', 'mvelasquezh4@miumg.edu.gt'), -- Contraseña: hola123
                                                                                ('María', 'mlopez', '$2a$12$wcdCREGfpTmvpDPNukN7TubkffzfT6GaxozCHj6RIPih.z2nyWNBW', 1, 'López', 'maria.lopez@example.com'),       -- Contraseña: hola123
                                                                                ('Carlos', 'srodas', '$2a$12$5zBeWCHTRXRC4Ao1gfJ13.8hUY7dTtyk2mqCGyBXuPqgMxiZVB2KS', 0, 'Pérez', 'carlos.perez@example.com'),     -- Contraseña: hola123
@@ -106,7 +106,7 @@ INSERT INTO usuario (nombre, username, password, enabled, apellido, email) VALUE
                                                                                ('Diego', 'dialvehid', '$2a$12$NOOJu.lN7GtEi1SUvlFA0u1GAL3juAhRDmAx5cQA2WJ39Xlih1U/2', 1, 'Velasquez', 'skdiego27@gmail.com'); -- Contraseña: password5
 
 -- Datos de prueba para la tabla Rol
-INSERT INTO rol (nombre, descripcion) VALUES
+INSERT INTO FraterPlus.rol (nombre, descripcion) VALUES
                                           ('ROLE_ADMIN', 'Tiene acceso completo a todas las funcionalidades del sistema'),
                                           ('Vendedor', 'Acceso a la gestión de ventas y pedidos'),
                                           ('Almacén', 'Acceso a la gestión de inventarios y lotes'),
@@ -114,7 +114,7 @@ INSERT INTO rol (nombre, descripcion) VALUES
                                           ('Gerente', 'Acceso a reportes y decisiones estratégicas del negocio');
 
 -- Datos de prueba para la tabla Usuario_Rol
-INSERT INTO usuario_rol (usuario_id, rol_id) VALUES
+INSERT INTO FraterPlus.usuario_rol (usuario_id, rol_id) VALUES
                                                  (1, 1),  -- El usuario 1 (Marcos Velasquez) tiene el rol de Administrador
                                                  (2, 1),  -- El usuario 2 (Misael Lopez) tiene el rol de Administrador
                                                  (3, 1),  -- El usuario 3 (Samuel Rodas) tiene el rol de Administrador
@@ -124,7 +124,7 @@ INSERT INTO usuario_rol (usuario_id, rol_id) VALUES
                                                  (2, 4);  -- El usuario 2 (María López) también tiene el rol de Soporte
 
 -- Datos de prueba para la tabla Estado
-INSERT INTO estado (descripcion) VALUES
+INSERT INTO FraterPlus.estado (descripcion) VALUES
                                      ('Pendiente'),
                                      ('Procesado'),
                                      ('Enviado'),
