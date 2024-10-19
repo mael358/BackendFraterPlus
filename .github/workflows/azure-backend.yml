@@ -48,5 +48,5 @@ jobs:
       - name: Deploy to Azure Web App for Containers
         uses: azure/webapps-deploy@v2
         with:
-          app-name: erp-backend-app
+          app-name: fraterplus-backend
           images: ${{ secrets.ACR_LOGIN_SERVER }}/backend-app:latest
