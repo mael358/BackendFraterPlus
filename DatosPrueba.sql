@@ -1,10 +1,10 @@
 INSERT INTO FraterPlus.articulo (nombre, descripcion, valor_costo, valor_venta)
 VALUES
-    ('Caja lapiceros faber castel negro', '12 lapiceros faber castel negro', 4500.0000, 5000.0000),
-    ('Resma de papel', '1000 hojas de papel', 150.0000, 200.0000),
-    ('Lapiz Maped', 'Caja de 12 lapices maped', 200.0000, 250.0000),
-    ('Laminas sistema solar', 'Juego de laminas del sistema solar', 800.0000, 950.0000),
-    ('Caja de marcadores multicolor Faber Castel', 'Caja de 24 marcadores surtidos', 1200.0000, 1500.0000);
+    ('Caja lapiceros faber castel negro', '12 lapiceros faber castel negro', 25.50, 35.00),
+    ('Resma de papel', '1000 hojas de papel', 15.00, 20.00),
+    ('Lapiz Maped', 'Caja de 12 lapices maped', 20.00, 25.00),
+    ('Laminas sistema solar', 'Juego de laminas del sistema solar', 80.00, 95.00),
+    ('Caja de marcadores multicolor Faber Castel', 'Caja de 24 marcadores surtidos', 20.00, 35.00);
 
 INSERT INTO FraterPlus.proveedor (nombres, direccion, nit, DPI, telefono, extension, correo)
 VALUES
